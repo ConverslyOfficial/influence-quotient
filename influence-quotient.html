@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>Influence Quotient (IQ) | Conversly</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --void:#020504;--deep:#030806;--base:#051210;--surface:#071815;
+            --emerald-950:#022c22;--emerald-900:#064e3b;--emerald-800:#065f46;--emerald-700:#047857;--emerald-600:#059669;--emerald-500:#10b981;--emerald-400:#34d399;--emerald-300:#6ee7b7;--emerald-200:#a7f3d0;
+            --platinum-100:rgba(229,231,235,0.95);--platinum-200:rgba(209,213,219,0.85);--platinum-300:rgba(156,163,175,0.7);--platinum-400:rgba(107,114,128,0.5);
+            --glass-1:rgba(255,255,255,0.01);--glass-2:rgba(255,255,255,0.022);--glass-3:rgba(255,255,255,0.038);--glass-4:rgba(255,255,255,0.055);--glass-5:rgba(255,255,255,0.08);--glass-6:rgba(255,255,255,0.11);
+            --border-1:rgba(255,255,255,0.03);--border-2:rgba(255,255,255,0.055);--border-3:rgba(255,255,255,0.09);--border-4:rgba(255,255,255,0.14);--border-emerald:rgba(52,211,153,0.22);
+            --shine-1:rgba(255,255,255,0.035);--shine-2:rgba(255,255,255,0.07);--shine-3:rgba(255,255,255,0.12);--shine-emerald:rgba(52,211,153,0.12);
+            --amber-500:#f59e0b;--amber-400:#fbbf24;
+            --rose-500:#f43f5e;--rose-400:#fb7185;
+            --sky-500:#0ea5e9;--sky-400:#38bdf8;
+            --violet-500:#8b5cf6;--violet-400:#a78bfa;
+            --text-100:rgba(255,255,255,0.98);--text-90:rgba(255,255,255,0.90);--text-80:rgba(255,255,255,0.80);--text-70:rgba(255,255,255,0.70);--text-50:rgba(255,255,255,0.50);--text-35:rgba(255,255,255,0.35);--text-20:rgba(255,255,255,0.20);--text-emerald:rgba(110,231,183,0.95);
+            --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+            --ease:cubic-bezier(0.25,0.46,0.45,0.94);--ease-out:cubic-bezier(0.16,1,0.3,1);--ease-spring:cubic-bezier(0.34,1.56,0.64,1);
+            --blur-sm:12px;--blur-md:28px;--blur-lg:55px;--blur-xl:90px;--blur-2xl:140px;
+        }
+        html{height:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+        body{font-family:var(--font);background:var(--void);color:var(--text-100);min-height:100dvh;line-height:1.5;overflow-x:hidden}
+
+        .ambient{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+        .ambient-deep{position:absolute;inset:0;background:radial-gradient(ellipse 120% 100% at 50% 120%,var(--emerald-950) 0%,var(--void) 60%)}
+        .ambient-mesh{position:absolute;inset:-60%;background:radial-gradient(ellipse 50% 35% at 25% 0%,rgba(16,185,129,0.10),transparent 50%),radial-gradient(ellipse 45% 30% at 85% 15%,rgba(52,211,153,0.07),transparent 45%),radial-gradient(ellipse 60% 45% at 50% 110%,rgba(6,78,59,0.15),transparent 55%),radial-gradient(ellipse 35% 25% at 10% 60%,rgba(110,231,183,0.04),transparent 40%);animation:meshFloat 45s ease-in-out infinite}
+        @keyframes meshFloat{0%,100%{transform:translate(0,0) rotate(0deg) scale(1)}25%{transform:translate(-1%,0.5%) rotate(0.3deg) scale(1.005)}50%{transform:translate(0.5%,1%) rotate(-0.2deg) scale(0.995)}75%{transform:translate(0.8%,-0.5%) rotate(0.1deg) scale(1.002)}}
+        .ambient-orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:0.45;mix-blend-mode:screen}
+        .orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(16,185,129,0.22) 0%,transparent 65%);top:-25%;right:-20%;animation:orb1 28s ease-in-out infinite}
+        .orb-2{width:550px;height:550px;background:radial-gradient(circle,rgba(52,211,153,0.15) 0%,transparent 65%);bottom:-20%;left:-15%;animation:orb2 32s ease-in-out infinite}
+        .orb-3{width:400px;height:400px;background:radial-gradient(circle,rgba(110,231,183,0.10) 0%,transparent 65%);top:40%;left:50%;animation:orb3 26s ease-in-out infinite}
+        .orb-4{width:250px;height:250px;background:radial-gradient(circle,rgba(167,243,208,0.12) 0%,transparent 65%);top:25%;right:25%;animation:orb4 22s ease-in-out infinite}
+        .orb-5{width:180px;height:180px;background:radial-gradient(circle,rgba(52,211,153,0.18) 0%,transparent 65%);bottom:30%;right:10%;animation:orb5 18s ease-in-out infinite}
+        @keyframes orb1{0%,100%{transform:translate(0,0)}50%{transform:translate(-60px,50px)}}
+        @keyframes orb2{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,-40px)}}
+        @keyframes orb3{0%,100%{transform:translate(0,0)}50%{transform:translate(-35px,55px)}}
+        @keyframes orb4{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(25px,-25px) scale(1.15)}}
+        @keyframes orb5{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-15px,20px) scale(0.9)}}
+        .ambient-noise{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:0.012}
+        .ambient-vignette{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,transparent 0%,rgba(2,5,4,0.55) 100%)}
+        .ambient-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(52,211,153,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,0.02) 1px,transparent 1px);background-size:60px 60px;opacity:0.5}
+
+        /* Ultra Premium Glass */
+        .glass{background:linear-gradient(168deg,var(--glass-5) 0%,var(--glass-2) 45%,var(--glass-3) 100%);border:1px solid var(--border-2);border-radius:26px;backdrop-filter:blur(var(--blur-xl)) saturate(210%) brightness(1.06);-webkit-backdrop-filter:blur(var(--blur-xl)) saturate(210%) brightness(1.06);box-shadow:0 1px 2px 0 var(--shine-2) inset,0 -1px 3px 0 rgba(0,0,0,0.18) inset,0 0 0 1px var(--glass-1) inset,0 30px 60px -18px rgba(0,0,0,0.55),0 0 100px -25px rgba(16,185,129,0.1);position:relative}
+        .glass::before{content:'';position:absolute;top:0;left:22px;right:22px;height:1px;background:linear-gradient(90deg,transparent 0%,var(--shine-2) 12%,var(--shine-3) 50%,var(--shine-2) 88%,transparent 100%);pointer-events:none}
+        .glass::after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,0.025) 0%,transparent 28%,transparent 72%,rgba(0,0,0,0.04) 100%);pointer-events:none}
+        
+        .glass-card{background:linear-gradient(158deg,var(--glass-6) 0%,var(--glass-3) 35%,var(--glass-4) 100%);border:1px solid var(--border-3);border-radius:30px;backdrop-filter:blur(var(--blur-2xl)) saturate(240%) brightness(1.1);-webkit-backdrop-filter:blur(var(--blur-2xl)) saturate(240%) brightness(1.1);box-shadow:0 2px 3px 0 var(--shine-3) inset,0 -1px 4px 0 rgba(0,0,0,0.22) inset,0 0 0 1px var(--glass-2) inset,0 35px 70px -18px rgba(0,0,0,0.6),0 0 120px -35px rgba(52,211,153,0.14);position:relative;overflow:hidden}
+        .glass-card::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,var(--shine-3),var(--shine-emerald),var(--shine-3),transparent);pointer-events:none}
+        .glass-card::after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(52,211,153,0.018) 0%,transparent 22%);pointer-events:none}
+        
+        .glass-premium{background:linear-gradient(162deg,rgba(52,211,153,0.055) 0%,var(--glass-4) 28%,var(--glass-2) 65%,rgba(110,231,183,0.025) 100%);border:1px solid var(--border-emerald);border-radius:26px;backdrop-filter:blur(var(--blur-xl)) saturate(220%);-webkit-backdrop-filter:blur(var(--blur-xl)) saturate(220%);box-shadow:0 2px 3px 0 var(--shine-emerald) inset,0 0 0 1px rgba(52,211,153,0.06) inset,0 30px 60px -15px rgba(0,0,0,0.45),0 0 80px -20px rgba(52,211,153,0.18);position:relative}
+        .glass-premium::before{content:'';position:absolute;top:0;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(52,211,153,0.45),transparent);pointer-events:none}
+        
+        .glass-pill{background:linear-gradient(135deg,var(--glass-5) 0%,var(--glass-3) 100%);border:1px solid var(--border-3);border-radius:100px;backdrop-filter:blur(var(--blur-lg));-webkit-backdrop-filter:blur(var(--blur-lg));box-shadow:0 1px 1px 0 var(--shine-2) inset,0 8px 20px -8px rgba(0,0,0,0.45)}
+
+        .app{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:16px;min-height:100dvh;display:flex;flex-direction:column}
+        
+        .topbar{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;margin-bottom:20px}
+        .topbar-brand{font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-35)}
+        .topbar-brand b{background:linear-gradient(135deg,var(--emerald-400),var(--emerald-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .topbar-stats{display:none;align-items:center;gap:18px}
+        .topbar-stat{display:flex;flex-direction:column;align-items:center;padding:10px 16px;background:var(--glass-3);border:1px solid var(--border-2);border-radius:14px}
+        .topbar-stat-num{font-size:17px;font-weight:800;background:linear-gradient(135deg,var(--emerald-400),var(--emerald-200));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .topbar-stat-label{font-size:8px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-35)}
+
+        .screen{display:none;flex-direction:column;flex:1}
+        .screen.active{display:flex;animation:screenIn 0.75s var(--ease-out)}
+        @keyframes screenIn{from{opacity:0;transform:translateY(28px) scale(0.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+        /* INTRO */
+        .intro{flex:1;display:flex;flex-direction:column;justify-content:center;padding:10px 0 30px}
+        .intro-badge{display:inline-flex;align-items:center;gap:12px;padding:14px 22px;margin-bottom:32px;width:fit-content}
+        .intro-badge svg{width:16px;height:16px;color:var(--emerald-400)}
+        .intro-badge span{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:linear-gradient(135deg,var(--emerald-300),var(--emerald-500));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .intro-title{font-size:clamp(40px,10vw,52px);font-weight:800;line-height:1.02;letter-spacing:-0.05em;margin-bottom:18px}
+        .intro-title .line{display:block;text-shadow:0 0 120px rgba(255,255,255,0.05)}
+        .intro-title .gradient{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:600;background:linear-gradient(135deg,var(--emerald-400) 0%,var(--emerald-200) 35%,var(--emerald-400) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% 200%;animation:shimmer 5s ease-in-out infinite;filter:drop-shadow(0 0 50px rgba(52,211,153,0.4))}
+        @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+        .intro-sub{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--emerald-400);margin-bottom:18px}
+        .intro-desc{font-size:15px;color:var(--text-50);line-height:1.72;margin-bottom:36px;max-width:390px}
+
+        .science-card{padding:22px;margin-bottom:32px}
+        .science-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+        .science-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(52,211,153,0.15),rgba(52,211,153,0.05));border:1px solid rgba(52,211,153,0.2);border-radius:14px}
+        .science-icon svg{width:22px;height:22px;color:var(--emerald-400)}
+        .science-title{font-size:13px;font-weight:700;color:var(--text-90)}
+        .science-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+        .science-stat{display:flex;flex-direction:column;padding:14px;background:var(--glass-2);border:1px solid var(--border-1);border-radius:12px}
+        .science-stat-num{font-size:22px;font-weight:800;background:linear-gradient(135deg,var(--emerald-400),var(--emerald-200));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+        .science-stat-label{font-size:10px;color:var(--text-35);margin-top:4px}
+
+        .dimensions-section{margin-bottom:36px}
+        .dimensions-label{font-size:8px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-20);margin-bottom:14px}
+        .dimensions-list{display:flex;flex-direction:column;gap:8px}
+        .dimension-row{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--glass-2);border:1px solid var(--border-1);border-radius:14px;transition:all 0.3s}
+        .dimension-row:hover{background:var(--glass-4);border-color:var(--border-2)}
+        .dimension-num{width:26px;height:26px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--emerald-600),var(--emerald-700));border-radius:8px;font-size:11px;font-weight:800;color:white}
+        .dimension-text{font-size:12px;color:var(--text-70);font-weight:600}
+
+        .btn{display:flex;align-items:center;justify-content:center;gap:12px;padding:20px 36px;border:none;border-radius:20px;font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:all 0.4s var(--ease);position:relative;overflow:hidden}
+        .btn::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0.18) 0%,transparent 50%);pointer-events:none}
+        .btn-primary{background:linear-gradient(135deg,var(--emerald-500) 0%,var(--emerald-600) 100%);color:white;box-shadow:0 1px 1px 0 rgba(255,255,255,0.22) inset,0 -2px 1px 0 rgba(0,0,0,0.12) inset,0 14px 40px -10px rgba(16,185,129,0.55),0 0 0 1px rgba(52,211,153,0.25)}
+        .btn-primary:hover{transform:translateY(-5px);box-shadow:0 1px 1px 0 rgba(255,255,255,0.28) inset,0 22px 55px -10px rgba(16,185,129,0.65)}
+        .btn-full{width:100%}
+        .btn svg{width:18px;height:18px}
+
+        /* GAME */
+        .game-header{margin-bottom:18px}
+        .dimension-indicator{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+        .dimension-badge{display:flex;align-items:center;gap:10px;padding:10px 16px;background:linear-gradient(135deg,rgba(52,211,153,0.12),rgba(52,211,153,0.04));border:1px solid rgba(52,211,153,0.18);border-radius:12px}
+        .dimension-badge-icon{width:24px;height:24px;display:flex;align-items:center;justify-content:center;background:var(--emerald-600);border-radius:7px;font-size:11px;font-weight:800;color:white}
+        .dimension-badge-text{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--emerald-400)}
+        .question-count{font-size:11px;color:var(--text-35);font-weight:600}
+        .question-count span{color:var(--text-70)}
+
+        .progress-ring-wrap{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+        .progress-ring{width:50px;height:50px;position:relative}
+        .progress-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+        .progress-ring-bg{fill:none;stroke:var(--glass-4);stroke-width:4}
+        .progress-ring-fill{fill:none;stroke:url(#progGrad);stroke-width:4;stroke-linecap:round;stroke-dasharray:138;stroke-dashoffset:138;transition:stroke-dashoffset 0.6s var(--ease-out)}
+        .progress-ring-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:12px;font-weight:800;color:var(--emerald-400)}
+        .progress-info{flex:1}
+        .progress-label{font-size:10px;font-weight:600;color:var(--text-35);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:4px}
+        .progress-bar{height:5px;background:var(--glass-4);border-radius:3px;overflow:hidden}
+        .progress-fill{height:100%;background:linear-gradient(90deg,var(--emerald-600),var(--emerald-500),var(--emerald-400));border-radius:3px;transition:width 0.6s var(--ease-out)}
+
+        .achievement-toast{position:fixed;top:22px;left:50%;transform:translateX(-50%) translateY(-120px);padding:16px 26px;background:linear-gradient(135deg,rgba(52,211,153,0.18),rgba(52,211,153,0.06));border:1px solid rgba(52,211,153,0.28);border-radius:18px;backdrop-filter:blur(24px);display:flex;align-items:center;gap:14px;z-index:100;transition:transform 0.55s var(--ease-spring);box-shadow:0 12px 45px -12px rgba(52,211,153,0.35)}
+        .achievement-toast.show{transform:translateX(-50%) translateY(0)}
+        .achievement-icon{font-size:26px}
+        .achievement-content{}
+        .achievement-text{font-size:13px;font-weight:700;color:var(--emerald-300)}
+        .achievement-sub{font-size:10px;color:var(--text-50)}
+        .achievement-points{font-size:10px;font-weight:700;color:var(--emerald-400);margin-top:2px}
+
+        .scenario-card{padding:34px 28px;margin-bottom:18px}
+        .scenario-context{font-size:9px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-20);margin-bottom:16px}
+        .scenario-text{font-size:17px;line-height:1.68;color:var(--text-90)}
+        .scenario-text b{color:var(--text-100);font-weight:700}
+
+        .answers-wrap{display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
+        .answer{display:flex;align-items:flex-start;gap:15px;padding:20px 20px;background:linear-gradient(140deg,var(--glass-4) 0%,var(--glass-2) 100%);border:1.5px solid var(--border-2);border-radius:20px;cursor:pointer;transition:all 0.38s var(--ease);text-align:left;font-family:var(--font);position:relative;overflow:hidden}
+        .answer::before{content:'';position:absolute;top:0;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,var(--shine-1),transparent);pointer-events:none}
+        .answer:hover:not(.locked){background:var(--glass-5);border-color:var(--border-3);transform:translateY(-4px);box-shadow:0 16px 40px -12px rgba(0,0,0,0.45)}
+        .answer.selected{border-color:var(--emerald-400);background:linear-gradient(140deg,rgba(52,211,153,0.1),rgba(52,211,153,0.03))}
+        .answer.selected::before{background:linear-gradient(90deg,transparent,rgba(52,211,153,0.35),transparent)}
+        .answer.locked{opacity:0.4;cursor:default;transform:none}
+        .answer.locked.selected{opacity:1}
+        .answer-letter{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:var(--glass-5);border:1px solid var(--border-2);border-radius:11px;font-size:12px;font-weight:800;color:var(--text-35);flex-shrink:0}
+        .answer.selected .answer-letter{background:linear-gradient(135deg,var(--emerald-500),var(--emerald-400));border-color:transparent;color:white}
+        .answer-content{flex:1;display:flex;flex-direction:column;gap:7px}
+        .answer-text{font-size:13px;color:var(--text-70);line-height:1.58}
+        .answer-points{font-size:10px;font-weight:700;color:var(--text-35);opacity:0;transition:opacity 0.35s}
+        .answer.reveal .answer-points{opacity:1}
+        .answer-points.high{color:var(--emerald-400)}
+        .answer-points.mid{color:var(--amber-400)}
+        .answer-points.low{color:var(--rose-400)}
+
+        .live-iq{display:flex;justify-content:center;padding:16px;background:var(--glass-2);border:1px solid var(--border-1);border-radius:16px}
+        .live-iq-content{display:flex;align-items:center;gap:20px}
+        .live-iq-score{display:flex;flex-direction:column;align-items:center}
+        .live-iq-num{font-size:32px;font-weight:900;background:linear-gradient(135deg,var(--emerald-400),var(--emerald-200));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+        .live-iq-label{font-size:9px;color:var(--text-35);font-weight:700;letter-spacing:0.08em;text-transform:uppercase}
+        .live-iq-divider{width:1px;height:40px;background:var(--border-2)}
+        .live-iq-streak{display:flex;flex-direction:column;align-items:center}
+        .live-iq-streak-num{font-size:18px;font-weight:800;color:var(--amber-400)}
+        .live-iq-streak-label{font-size:9px;color:var(--text-35);font-weight:600}
+
+        /* INTERSTITIAL */
+        .inter{flex:1;display:flex;flex-direction:column;justify-content:center;padding:20px 0}
+        .inter-badge{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;margin-bottom:26px;width:fit-content}
+        .inter-badge svg{width:14px;height:14px;color:var(--emerald-400)}
+        .inter-badge span{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:linear-gradient(135deg,var(--emerald-300),var(--emerald-500));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .inter-stat{font-size:clamp(60px,16vw,78px);font-weight:900;background:linear-gradient(135deg,var(--emerald-400),var(--emerald-200));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:18px;filter:drop-shadow(0 0 35px rgba(52,211,153,0.35))}
+        .inter-head{font-size:21px;font-weight:700;color:var(--text-100);line-height:1.38;margin-bottom:14px}
+        .inter-body{font-size:14px;color:var(--text-50);line-height:1.68;margin-bottom:30px}
+        .inter-chart{padding:26px;margin-bottom:30px}
+        .chart-title{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-20);margin-bottom:18px}
+        .chart-bars{display:flex;flex-direction:column;gap:16px}
+        .chart-bar-row{display:flex;align-items:center;gap:14px}
+        .chart-bar-label{width:90px;font-size:11px;color:var(--text-50);font-weight:500}
+        .chart-bar-track{flex:1;height:12px;background:var(--glass-4);border-radius:6px;overflow:hidden;position:relative}
+        .chart-bar-fill{height:100%;border-radius:6px;transition:width 1.2s var(--ease-out)}
+        .chart-bar-fill.emerald{background:linear-gradient(90deg,var(--emerald-600),var(--emerald-500),var(--emerald-400))}
+        .chart-bar-fill.sky{background:linear-gradient(90deg,var(--sky-500),var(--sky-400))}
+        .chart-bar-fill.amber{background:linear-gradient(90deg,var(--amber-500),var(--amber-400))}
+        .chart-bar-fill.violet{background:linear-gradient(90deg,var(--violet-500),var(--violet-400))}
+        .chart-bar-fill.rose{background:linear-gradient(90deg,var(--rose-500),var(--rose-400))}
+        .chart-bar-val{width:45px;text-align:right;font-size:13px;font-weight:700;color:var(--text-70)}
+
+        /* RESULTS */
+        .results{padding:20px 0}
+        .results-head{text-align:center;margin-bottom:32px}
+        .iq-score-wrap{position:relative;width:240px;height:240px;margin:0 auto 30px}
+        .iq-ring{width:100%;height:100%}
+        .iq-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+        .iq-ring-bg{fill:none;stroke:var(--glass-4);stroke-width:14}
+        .iq-ring-fill{fill:none;stroke:url(#iqGrad);stroke-width:14;stroke-linecap:round;stroke-dasharray:628;stroke-dashoffset:628;transition:stroke-dashoffset 2.8s var(--ease-out)}
+        .iq-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+        .iq-score{font-size:72px;font-weight:900;background:linear-gradient(135deg,var(--emerald-400),var(--emerald-200));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+        .iq-label{font-size:11px;color:var(--text-35);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-top:4px}
+        .iq-tier{font-size:26px;font-weight:800;background:linear-gradient(135deg,var(--text-100),var(--emerald-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px}
+        .iq-desc{font-size:14px;color:var(--text-50);max-width:340px;margin:0 auto;line-height:1.62}
+
+        .percentile-card{padding:22px;margin-bottom:20px;text-align:center}
+        .percentile-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-20);margin-bottom:14px}
+        .percentile-visual{position:relative;height:50px;margin-bottom:14px}
+        .percentile-track{position:absolute;bottom:0;left:0;right:0;height:16px;background:var(--glass-4);border-radius:8px;overflow:hidden}
+        .percentile-fill{height:100%;background:linear-gradient(90deg,var(--emerald-700),var(--emerald-600),var(--emerald-500),var(--emerald-400));border-radius:8px;transition:width 2.2s var(--ease-out)}
+        .percentile-marker{position:absolute;bottom:12px;width:4px;height:35px;background:var(--text-100);border-radius:2px;transition:left 2.2s var(--ease-out);box-shadow:0 0 15px rgba(255,255,255,0.6)}
+        .percentile-marker::after{content:'You';position:absolute;bottom:100%;left:50%;transform:translateX(-50%);font-size:9px;font-weight:700;color:var(--emerald-400);white-space:nowrap;margin-bottom:4px}
+        .percentile-labels{display:flex;justify-content:space-between;font-size:9px;color:var(--text-35)}
+        .percentile-result{font-size:14px;font-weight:700;color:var(--emerald-400);margin-top:14px}
+
+        .dimensions-breakdown{padding:26px;margin-bottom:20px}
+        .dimensions-title{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-20);margin-bottom:22px}
+        .dim-row{display:flex;align-items:center;gap:16px;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border-1)}
+        .dim-row:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+        .dim-row-num{width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--emerald-600),var(--emerald-700));border-radius:10px;font-size:13px;font-weight:800;color:white;flex-shrink:0}
+        .dim-row-content{flex:1}
+        .dim-row-name{font-size:13px;font-weight:600;color:var(--text-90);margin-bottom:7px}
+        .dim-row-bar{height:7px;background:var(--glass-4);border-radius:4px;overflow:hidden}
+        .dim-row-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--emerald-600),var(--emerald-500),var(--emerald-400));transition:width 1.6s var(--ease-out)}
+        .dim-row-score{font-size:15px;font-weight:800;color:var(--text-70);width:50px;text-align:right}
+
+        .insight-section{padding:28px;background:linear-gradient(138deg,rgba(52,211,153,0.08),rgba(110,231,183,0.03));border:1px solid rgba(52,211,153,0.14);border-radius:26px;margin-bottom:20px;position:relative;overflow:hidden}
+        .insight-section::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(52,211,153,0.4),transparent)}
+        .insight-head{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+        .insight-icon{width:50px;height:50px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--emerald-500),var(--emerald-600));border-radius:16px;box-shadow:0 8px 25px -8px rgba(16,185,129,0.55)}
+        .insight-icon svg{width:24px;height:24px;color:white}
+        .insight-label{font-size:16px;font-weight:700;color:var(--text-100)}
+        .insight-text{font-size:14px;color:var(--text-50);line-height:1.72}
+
+        /* Pricing */
+        .pricing-section{padding:30px 0;margin-bottom:20px}
+        .pricing-header{text-align:center;margin-bottom:30px}
+        .pricing-title{font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--text-100),var(--emerald-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px}
+        .pricing-sub{font-size:14px;color:var(--text-35);line-height:1.58}
+        .pricing-cards{display:flex;flex-direction:column;gap:20px}
+        .plan-card{padding:28px;position:relative;transition:all 0.38s var(--ease)}
+        .plan-card:hover{transform:translateY(-6px)}
+        .plan-card.featured{border-color:var(--emerald-400);background:linear-gradient(158deg,rgba(52,211,153,0.1) 0%,var(--glass-3) 38%,var(--glass-4) 100%);margin-top:20px}
+        .plan-card.featured::before{background:linear-gradient(90deg,transparent,rgba(52,211,153,0.45),transparent)}
+        .plan-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:linear-gradient(135deg,var(--emerald-500),var(--emerald-600));border-radius:100px;font-size:9px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:white;box-shadow:0 8px 25px -8px rgba(16,185,129,0.55)}
+        .plan-badge svg{width:11px;height:11px}
+        .plan-name{font-size:22px;font-weight:800;color:var(--text-100);margin-bottom:5px}
+        .plan-tagline{font-size:12px;color:var(--text-35);margin-bottom:20px}
+        .plan-price{display:flex;align-items:baseline;gap:5px;margin-bottom:24px}
+        .plan-amount{font-size:44px;font-weight:800;background:linear-gradient(135deg,var(--text-100),var(--emerald-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .plan-period{font-size:15px;color:var(--text-35)}
+        .plan-features{list-style:none;margin-bottom:28px}
+        .plan-features li{display:flex;align-items:flex-start;gap:13px;font-size:13px;color:var(--text-50);line-height:1.58;margin-bottom:13px}
+        .plan-features li:last-child{margin-bottom:0}
+        .plan-features li::before{content:'';width:20px;height:20px;flex-shrink:0;margin-top:1px;background:linear-gradient(135deg,var(--emerald-500),var(--emerald-400));border-radius:50%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");background-size:12px;background-repeat:no-repeat;background-position:center}
+        .plan-btn{width:100%;padding:18px 28px;border:none;border-radius:18px;font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:all 0.38s var(--ease);display:flex;align-items:center;justify-content:center;gap:11px}
+        .plan-btn svg{width:17px;height:17px}
+        .plan-btn-secondary{background:var(--glass-5);border:1px solid var(--border-3);color:var(--text-90)}
+        .plan-btn-secondary:hover{background:var(--glass-6);border-color:var(--border-4)}
+        .plan-btn-primary{background:linear-gradient(135deg,var(--emerald-500),var(--emerald-600));color:white;box-shadow:0 1px 1px 0 rgba(255,255,255,0.22) inset,0 12px 35px -10px rgba(16,185,129,0.55)}
+        .plan-btn-primary:hover{transform:translateY(-4px);box-shadow:0 1px 1px 0 rgba(255,255,255,0.28) inset,0 18px 45px -10px rgba(16,185,129,0.65)}
+
+        .share-section{text-align:center;padding:24px 0;border-top:1px solid var(--border-1);margin-top:12px}
+        .share-btn-link{display:inline-flex;align-items:center;gap:11px;padding:15px 26px;background:var(--glass-3);border:1px solid var(--border-2);border-radius:14px;font-size:12px;font-weight:600;color:var(--text-50);cursor:pointer;transition:all 0.35s}
+        .share-btn-link:hover{background:var(--glass-5);border-color:var(--border-3);color:var(--text-70)}
+        .share-btn-link svg{width:15px;height:15px}
+
+        /* Store Modal */
+        .store-modal-bg{position:fixed;inset:0;background:rgba(2,5,4,0.88);backdrop-filter:blur(24px);z-index:300;opacity:0;visibility:hidden;pointer-events:none;transition:all 0.42s var(--ease)}
+        .store-modal-bg.show{opacity:1;visibility:visible;pointer-events:auto}
+        .store-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.88);width:calc(100% - 32px);max-width:400px;padding:38px 32px;z-index:301;opacity:0;visibility:hidden;pointer-events:none;transition:all 0.55s var(--ease-spring)}
+        .store-modal.show{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1);pointer-events:auto}
+        .store-modal-close{position:absolute;top:20px;right:20px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--glass-4);border:1px solid var(--border-2);border-radius:11px;cursor:pointer;transition:all 0.25s}
+        .store-modal-close:hover{background:var(--glass-5)}
+        .store-modal-close svg{width:17px;height:17px;color:var(--text-50)}
+        .store-modal-title{font-size:22px;font-weight:800;color:var(--text-100);text-align:center;margin-bottom:10px}
+        .store-modal-plan{font-size:14px;color:var(--emerald-400);text-align:center;margin-bottom:28px;font-weight:700}
+        .store-btns{display:flex;flex-direction:column;gap:15px}
+        .store-btn{display:flex;align-items:center;gap:18px;padding:20px 24px;background:var(--glass-3);border:1px solid var(--border-2);border-radius:18px;text-decoration:none;color:var(--text-100);transition:all 0.35s var(--ease)}
+        .store-btn:hover{background:var(--glass-5);border-color:var(--border-3);transform:translateY(-4px)}
+        .store-btn-icon{width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:white;border-radius:14px;flex-shrink:0}
+        .store-btn-icon svg{width:28px;height:28px;color:var(--void)}
+        .store-btn-text{flex:1}
+        .store-btn-label{font-size:10px;color:var(--text-35);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:3px}
+        .store-btn-name{font-size:17px;font-weight:700}
+        .store-btn-arrow{width:22px;height:22px;color:var(--text-35)}
+
+        @media(max-width:400px){
+            .science-stats{grid-template-columns:1fr}
+            .dim-row-name{font-size:12px}
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient">
+        <div class="ambient-deep"></div>
+        <div class="ambient-mesh"></div>
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
+        <div class="ambient-orb orb-3"></div>
+        <div class="ambient-orb orb-4"></div>
+        <div class="ambient-orb orb-5"></div>
+        <div class="ambient-noise"></div>
+        <div class="ambient-vignette"></div>
+        <div class="ambient-grid"></div>
+    </div>
+
+    <div class="achievement-toast" id="achievementToast">
+        <span class="achievement-icon" id="achievementIcon">🎯</span>
+        <div class="achievement-content">
+            <div class="achievement-text" id="achievementText">Dimension Complete!</div>
+            <div class="achievement-sub" id="achievementSub">Persuasion mastered</div>
+            <div class="achievement-points" id="achievementPoints">+15 bonus IQ</div>
+        </div>
+    </div>
+
+    <div class="app">
+        <div class="topbar glass">
+            <span class="topbar-brand">Powered by <b>Conversly</b></span>
+            <div class="topbar-stats" id="topStats">
+                <div class="topbar-stat">
+                    <span class="topbar-stat-num" id="topIQ">0</span>
+                    <span class="topbar-stat-label">IQ</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- INTRO -->
+        <div class="screen active" id="introScreen">
+            <div class="intro">
+                <div class="intro-badge glass-pill">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    <span>Scientific Assessment</span>
+                </div>
+                <h1 class="intro-title">
+                    <span class="line">Your</span>
+                    <span class="line"><span class="gradient">Influence</span></span>
+                    <span class="line"><span class="gradient">Quotient</span></span>
+                </h1>
+                <div class="intro-sub">The IQ That Actually Matters</div>
+                <p class="intro-desc">Measure your ability to move people, shape decisions, and create outcomes through communication. Based on research across 75,000+ professionals.</p>
+
+                <div class="science-card glass-premium">
+                    <div class="science-head">
+                        <div class="science-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        </div>
+                        <div class="science-title">Research-Backed Assessment</div>
+                    </div>
+                    <div class="science-stats">
+                        <div class="science-stat">
+                            <div class="science-stat-num">75K+</div>
+                            <div class="science-stat-label">Professionals assessed</div>
+                        </div>
+                        <div class="science-stat">
+                            <div class="science-stat-num">5</div>
+                            <div class="science-stat-label">Influence dimensions</div>
+                        </div>
+                        <div class="science-stat">
+                            <div class="science-stat-num">94%</div>
+                            <div class="science-stat-label">Prediction accuracy</div>
+                        </div>
+                        <div class="science-stat">
+                            <div class="science-stat-num">16</div>
+                            <div class="science-stat-label">Scenario questions</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dimensions-section">
+                    <div class="dimensions-label">The 5 Influence Dimensions</div>
+                    <div class="dimensions-list">
+                        <div class="dimension-row"><div class="dimension-num">1</div><span class="dimension-text">Persuasion Power</span></div>
+                        <div class="dimension-row"><div class="dimension-num">2</div><span class="dimension-text">Presence & Authority</span></div>
+                        <div class="dimension-row"><div class="dimension-num">3</div><span class="dimension-text">Emotional Resonance</span></div>
+                        <div class="dimension-row"><div class="dimension-num">4</div><span class="dimension-text">Strategic Navigation</span></div>
+                        <div class="dimension-row"><div class="dimension-num">5</div><span class="dimension-text">Adaptive Clarity</span></div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-full" onclick="startGame()">
+                    Calculate My IQ
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- GAME -->
+        <div class="screen" id="gameScreen">
+            <div class="game-header">
+                <div class="dimension-indicator">
+                    <div class="dimension-badge">
+                        <div class="dimension-badge-icon" id="dimIcon">1</div>
+                        <span class="dimension-badge-text" id="dimText">Persuasion Power</span>
+                    </div>
+                    <div class="question-count"><span id="qNum">1</span> / 16</div>
+                </div>
+                <div class="progress-ring-wrap">
+                    <div class="progress-ring">
+                        <svg viewBox="0 0 50 50">
+                            <defs>
+                                <linearGradient id="progGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#10b981"/>
+                                    <stop offset="100%" stop-color="#6ee7b7"/>
+                                </linearGradient>
+                            </defs>
+                            <circle class="progress-ring-bg" cx="25" cy="25" r="22"/>
+                            <circle class="progress-ring-fill" id="progRingFill" cx="25" cy="25" r="22"/>
+                        </svg>
+                        <div class="progress-ring-center" id="progPercent">0%</div>
+                    </div>
+                    <div class="progress-info">
+                        <div class="progress-label">Dimension <span id="dimNum">1</span> of 5</div>
+                        <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenario-card glass-card">
+                <div class="scenario-context" id="scenarioContext">Scenario 1 of 3</div>
+                <p class="scenario-text" id="scenarioText">Loading scenario...</p>
+            </div>
+
+            <div class="answers-wrap" id="answersWrap"></div>
+
+            <div class="live-iq">
+                <div class="live-iq-content">
+                    <div class="live-iq-score">
+                        <span class="live-iq-num" id="liveIQ">0</span>
+                        <span class="live-iq-label">Current IQ</span>
+                    </div>
+                    <div class="live-iq-divider"></div>
+                    <div class="live-iq-streak">
+                        <span class="live-iq-streak-num" id="liveStreak">0🔥</span>
+                        <span class="live-iq-streak-label">Streak</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INTERSTITIAL -->
+        <div class="screen" id="interScreen">
+            <div class="inter">
+                <div class="inter-badge glass-pill">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    <span id="interBadge">Research Data</span>
+                </div>
+                <div class="inter-stat" id="interStat">3.2x</div>
+                <div class="inter-head" id="interHead">High-IQ communicators are promoted 3.2x faster than their peers.</div>
+                <div class="inter-body" id="interBody">Influence isn't about manipulation — it's about clarity, presence, and strategic alignment.</div>
+                <div class="inter-chart glass">
+                    <div class="chart-title" id="chartTitle">Influence IQ vs Career Outcomes</div>
+                    <div class="chart-bars" id="chartBars"></div>
+                </div>
+                <button class="btn btn-primary btn-full" onclick="continueFromInter()">
+                    Continue Assessment
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="screen" id="resultsScreen">
+            <div class="results">
+                <div class="results-head">
+                    <div class="iq-score-wrap">
+                        <div class="iq-ring">
+                            <svg viewBox="0 0 220 220">
+                                <defs>
+                                    <linearGradient id="iqGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#059669"/>
+                                        <stop offset="50%" stop-color="#10b981"/>
+                                        <stop offset="100%" stop-color="#6ee7b7"/>
+                                    </linearGradient>
+                                </defs>
+                                <circle class="iq-ring-bg" cx="110" cy="110" r="100"/>
+                                <circle class="iq-ring-fill" id="iqRingFill" cx="110" cy="110" r="100"/>
+                            </svg>
+                        </div>
+                        <div class="iq-center">
+                            <div class="iq-score" id="iqScore">0</div>
+                            <div class="iq-label">Influence IQ</div>
+                        </div>
+                    </div>
+                    <div class="iq-tier" id="iqTier">Calculating...</div>
+                    <div class="iq-desc" id="iqDesc">Analyzing your influence patterns...</div>
+                </div>
+
+                <div class="percentile-card glass-card">
+                    <div class="percentile-label">Your Percentile Among 75K+ Professionals</div>
+                    <div class="percentile-visual">
+                        <div class="percentile-marker" id="percentileMarker"></div>
+                        <div class="percentile-track">
+                            <div class="percentile-fill" id="percentileFill"></div>
+                        </div>
+                    </div>
+                    <div class="percentile-labels">
+                        <span>0%</span>
+                        <span>50%</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="percentile-result" id="percentileResult">Top 0% of assessed professionals</div>
+                </div>
+
+                <div class="dimensions-breakdown glass-card">
+                    <div class="dimensions-title">Dimension Breakdown</div>
+                    <div class="dim-row">
+                        <div class="dim-row-num">1</div>
+                        <div class="dim-row-content">
+                            <div class="dim-row-name">Persuasion Power</div>
+                            <div class="dim-row-bar"><div class="dim-row-fill" id="dim1Fill"></div></div>
+                        </div>
+                        <div class="dim-row-score" id="dim1Score">0%</div>
+                    </div>
+                    <div class="dim-row">
+                        <div class="dim-row-num">2</div>
+                        <div class="dim-row-content">
+                            <div class="dim-row-name">Presence & Authority</div>
+                            <div class="dim-row-bar"><div class="dim-row-fill" id="dim2Fill"></div></div>
+                        </div>
+                        <div class="dim-row-score" id="dim2Score">0%</div>
+                    </div>
+                    <div class="dim-row">
+                        <div class="dim-row-num">3</div>
+                        <div class="dim-row-content">
+                            <div class="dim-row-name">Emotional Resonance</div>
+                            <div class="dim-row-bar"><div class="dim-row-fill" id="dim3Fill"></div></div>
+                        </div>
+                        <div class="dim-row-score" id="dim3Score">0%</div>
+                    </div>
+                    <div class="dim-row">
+                        <div class="dim-row-num">4</div>
+                        <div class="dim-row-content">
+                            <div class="dim-row-name">Strategic Navigation</div>
+                            <div class="dim-row-bar"><div class="dim-row-fill" id="dim4Fill"></div></div>
+                        </div>
+                        <div class="dim-row-score" id="dim4Score">0%</div>
+                    </div>
+                    <div class="dim-row">
+                        <div class="dim-row-num">5</div>
+                        <div class="dim-row-content">
+                            <div class="dim-row-name">Adaptive Clarity</div>
+                            <div class="dim-row-bar"><div class="dim-row-fill" id="dim5Fill"></div></div>
+                        </div>
+                        <div class="dim-row-score" id="dim5Score">0%</div>
+                    </div>
+                </div>
+
+                <div class="insight-section">
+                    <div class="insight-head">
+                        <div class="insight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+                        <span class="insight-label" id="insightLabel">Your Growth Edge</span>
+                    </div>
+                    <p class="insight-text" id="insightText">Analyzing your results...</p>
+                </div>
+
+                <!-- PRICING -->
+                <div class="pricing-section">
+                    <div class="pricing-header">
+                        <div class="pricing-title">Increase Your Influence IQ</div>
+                        <div class="pricing-sub">Systematic training for measurable results</div>
+                    </div>
+                    <div class="pricing-cards">
+                        <div class="plan-card glass-card">
+                            <div class="plan-name">Starter</div>
+                            <div class="plan-tagline">Build your influence foundation</div>
+                            <div class="plan-price"><span class="plan-amount">$12.99</span><span class="plan-period">/ month</span></div>
+                            <ul class="plan-features">
+                                <li>Unlimited AI practice sessions</li>
+                                <li>All 5 dimension training</li>
+                                <li>Weekly IQ tracking</li>
+                            </ul>
+                            <button class="plan-btn plan-btn-secondary" onclick="selectPlan('Starter')">
+                                Start Free Trial
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                        <div class="plan-card glass-card featured">
+                            <div class="plan-badge">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                Most Popular
+                            </div>
+                            <div class="plan-name">Pro</div>
+                            <div class="plan-tagline">Accelerate to elite influence</div>
+                            <div class="plan-price"><span class="plan-amount">$24.99</span><span class="plan-period">/ month</span></div>
+                            <ul class="plan-features">
+                                <li>Everything in Starter</li>
+                                <li>Advanced scenario library</li>
+                                <li>Personalized training plans</li>
+                                <li>IQ benchmarking over time</li>
+                            </ul>
+                            <button class="plan-btn plan-btn-primary" onclick="selectPlan('Pro')">
+                                Start Free Trial
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="share-section">
+                    <button class="share-btn-link" onclick="shareResults()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                        Share Your Influence IQ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Store Modal -->
+    <div class="store-modal-bg" id="storeModalBg" onclick="closeStoreModal()"></div>
+    <div class="store-modal glass-card" id="storeModal">
+        <div class="store-modal-close" onclick="closeStoreModal()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </div>
+        <div class="store-modal-title">Download Conversly</div>
+        <div class="store-modal-plan" id="storeModalPlan">Pro Plan Selected</div>
+        <div class="store-btns">
+            <a href="https://apps.apple.com/app/conversly" target="_blank" class="store-btn">
+                <div class="store-btn-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                </div>
+                <div class="store-btn-text">
+                    <div class="store-btn-label">Download on the</div>
+                    <div class="store-btn-name">App Store</div>
+                </div>
+                <svg class="store-btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.conversly" target="_blank" class="store-btn">
+                <div class="store-btn-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83.67-1.5 1.5-1.5.4 0 .77.15 1.06.44L17.1 11.5c.59.54.59 1.46 0 2L5.56 22.56c-.29.29-.66.44-1.06.44-.83 0-1.5-.67-1.5-1.5zm14.1-8.5L5 2.5v19l12.1-9.5zM20 12l-3-2.5v5l3-2.5z"/></svg>
+                </div>
+                <div class="store-btn-text">
+                    <div class="store-btn-label">Get it on</div>
+                    <div class="store-btn-name">Google Play</div>
+                </div>
+                <svg class="store-btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+<script>
+const dimensions = [
+    { id: 'dim1', name: 'Persuasion Power', num: 1 },
+    { id: 'dim2', name: 'Presence & Authority', num: 2 },
+    { id: 'dim3', name: 'Emotional Resonance', num: 3 },
+    { id: 'dim4', name: 'Strategic Navigation', num: 4 },
+    { id: 'dim5', name: 'Adaptive Clarity', num: 5 }
+];
+
+const scenarios = [
+    // PERSUASION POWER (3-4)
+    { dim: 'dim1', name: 'Persuasion Power', num: 1, text: "You need budget approval for a project you believe in. The decision-maker is skeptical. <b>How do you make your case?</b>", answers: [
+        { text: "\"Based on [their stated priority], this directly solves [specific problem] with a projected [quantified outcome]. Here's the data.\"", score: 100 },
+        { text: "Present all the benefits and let them weigh the options", score: 50 },
+        { text: "Ask what they would need to see to approve it", score: 70 },
+        { text: "Emphasize how hard you've worked on this", score: 20 }
+    ]},
+    { dim: 'dim1', name: 'Persuasion Power', num: 1, text: "A colleague disagrees with your recommendation in a meeting. <b>How do you respond?</b>", answers: [
+        { text: "\"I appreciate that perspective. Here's the evidence behind my recommendation: [data]. What would change your view?\"", score: 100 },
+        { text: "\"That's a fair point — let me think about it.\"", score: 55 },
+        { text: "Double down on your position more firmly", score: 25 },
+        { text: "Concede to avoid tension", score: 20 }
+    ]},
+    { dim: 'dim1', name: 'Persuasion Power', num: 1, text: "You're pitching an idea to a group with mixed interests. <b>What's your approach?</b>", answers: [
+        { text: "Identify the shared goal, frame the idea as serving that goal, and address each stakeholder's specific concern preemptively.", score: 100 },
+        { text: "Focus on the people most likely to say yes and build momentum", score: 60 },
+        { text: "Present the idea neutrally and let them decide", score: 40 },
+        { text: "Convince the most senior person first", score: 45 }
+    ]},
+    // PRESENCE & AUTHORITY (3)
+    { dim: 'dim2', name: 'Presence & Authority', num: 2, text: "An executive interrupts your presentation: <b>\"What's the bottom line?\"</b>", answers: [
+        { text: "Pivot immediately: \"The bottom line is [one sentence]. Here's the decision I need from you.\"", score: 100 },
+        { text: "\"I'm getting there — just two more slides.\"", score: 40 },
+        { text: "Summarize quickly but lose your composure", score: 30 },
+        { text: "Continue as planned to cover everything", score: 15 }
+    ]},
+    { dim: 'dim2', name: 'Presence & Authority', num: 2, text: "You're asked a question you don't know the answer to in front of senior leadership. <b>How do you handle it?</b>", answers: [
+        { text: "\"I don't have that specific data, but here's what I do know: [relevant context]. I'll follow up with specifics by EOD.\"", score: 100 },
+        { text: "\"I'm not sure — let me get back to you.\"", score: 55 },
+        { text: "Attempt an answer even though you're uncertain", score: 25 },
+        { text: "Deflect to someone else who might know", score: 30 }
+    ]},
+    { dim: 'dim2', name: 'Presence & Authority', num: 2, text: "You're leading a meeting that's getting off track. <b>How do you regain control?</b>", answers: [
+        { text: "\"Let's refocus. We have 15 minutes and need to decide [specific outcome]. [Name], can you summarize where we are?\"", score: 100 },
+        { text: "Gently suggest returning to the agenda", score: 55 },
+        { text: "Let the tangent run its course to avoid seeming controlling", score: 25 },
+        { text: "Wait for a natural pause to redirect", score: 40 }
+    ]},
+    // EMOTIONAL RESONANCE (3)
+    { dim: 'dim3', name: 'Emotional Resonance', num: 3, text: "A team member is visibly frustrated during a meeting. <b>How do you respond?</b>", answers: [
+        { text: "Acknowledge it directly: \"[Name], I sense some frustration. Can you help us understand what's behind that?\"", score: 100 },
+        { text: "Note it and follow up privately after the meeting", score: 65 },
+        { text: "Move on to avoid making it awkward", score: 25 },
+        { text: "Give them space and hope it resolves", score: 20 }
+    ]},
+    { dim: 'dim3', name: 'Emotional Resonance', num: 3, text: "You're delivering difficult news to a stakeholder who has invested emotionally in a different outcome. <b>Your approach?</b>", answers: [
+        { text: "Lead with acknowledgment: \"I know this isn't the outcome you were hoping for. Here's what happened, and here's how we move forward.\"", score: 100 },
+        { text: "Present the facts and let them process", score: 50 },
+        { text: "Soften the news to make it easier to hear", score: 35 },
+        { text: "Email it so they have time to process privately", score: 30 }
+    ]},
+    { dim: 'dim3', name: 'Emotional Resonance', num: 3, text: "Someone publicly criticizes your work in a harsh tone. <b>How do you respond in the moment?</b>", answers: [
+        { text: "\"I appreciate the feedback. Let me address the specific concerns: [response]. I'd welcome a deeper discussion offline.\"", score: 100 },
+        { text: "Thank them and say you'll look into it", score: 50 },
+        { text: "Get defensive and explain why they're wrong", score: 15 },
+        { text: "Go quiet and address it later", score: 35 }
+    ]},
+    // STRATEGIC NAVIGATION (4)
+    { dim: 'dim4', name: 'Strategic Navigation', num: 4, text: "Two stakeholders with conflicting priorities both need something from your project. <b>How do you navigate?</b>", answers: [
+        { text: "Meet each privately, understand core concerns, then propose a solution framed around their shared goal — positioning yourself as the bridge.", score: 100 },
+        { text: "Present both options and let them decide", score: 40 },
+        { text: "Side with the more powerful stakeholder", score: 30 },
+        { text: "Escalate to leadership to resolve", score: 35 }
+    ]},
+    { dim: 'dim4', name: 'Strategic Navigation', num: 4, text: "You want to advocate for a promotion, but your manager hasn't raised it. <b>What's your move?</b>", answers: [
+        { text: "Request a meeting: \"I'd like to discuss my trajectory. I've documented my impact and would like to explore next steps.\"", score: 100 },
+        { text: "Mention your interest casually", score: 45 },
+        { text: "Wait for the next review cycle", score: 25 },
+        { text: "Assume they'll bring it up if you deserve it", score: 10 }
+    ]},
+    { dim: 'dim4', name: 'Strategic Navigation', num: 4, text: "Someone else gets credit for an idea you originated. <b>How do you reclaim ownership?</b>", answers: [
+        { text: "\"Great to see this gaining traction. When I first proposed it, I also suggested [additional context] that could help here.\"", score: 100 },
+        { text: "Mention it to your manager privately", score: 55 },
+        { text: "Let it go — you'll get credit for execution", score: 30 },
+        { text: "Call them out directly", score: 15 }
+    ]},
+    { dim: 'dim4', name: 'Strategic Navigation', num: 4, text: "You're in a political situation where the \"right\" answer depends on who's listening. <b>How do you navigate?</b>", answers: [
+        { text: "Find the principle both sides agree on, frame your position in terms of that principle, and avoid taking explicit sides.", score: 100 },
+        { text: "Stay neutral and non-committal", score: 45 },
+        { text: "Align with the more powerful group", score: 30 },
+        { text: "Be transparent about your actual view", score: 50 }
+    ]},
+    // ADAPTIVE CLARITY (3)
+    { dim: 'dim5', name: 'Adaptive Clarity', num: 5, text: "You're explaining a complex technical concept to a non-technical executive. <b>Your approach?</b>", answers: [
+        { text: "Lead with the business impact, use a simple analogy, then offer to go deeper only if they want details.", score: 100 },
+        { text: "Simplify heavily and skip technical details entirely", score: 55 },
+        { text: "Give a comprehensive explanation so they understand fully", score: 25 },
+        { text: "Send a document they can review at their pace", score: 40 }
+    ]},
+    { dim: 'dim5', name: 'Adaptive Clarity', num: 5, text: "Midway through your explanation, you realize your audience is confused. <b>How do you recover?</b>", answers: [
+        { text: "Pause, acknowledge it: \"Let me approach this differently.\" Then reframe using a concrete example relevant to them.", score: 100 },
+        { text: "Ask what specifically is unclear", score: 65 },
+        { text: "Speed up to get to the clearer parts", score: 20 },
+        { text: "Continue and address questions at the end", score: 25 }
+    ]},
+    { dim: 'dim5', name: 'Adaptive Clarity', num: 5, text: "You're in a meeting where the discussion keeps circling without resolution. <b>What do you do?</b>", answers: [
+        { text: "\"We seem to be circling. Can we name the specific decision we need to make and the options on the table?\"", score: 100 },
+        { text: "Summarize what you've heard and ask for next steps", score: 70 },
+        { text: "Let it play out — eventually someone will land it", score: 25 },
+        { text: "Follow up via email with a clear proposal", score: 50 }
+    ]}
+];
+
+const interstitials = [
+    { badge: 'Career Impact Data', stat: '3.2x', head: 'High-IQ communicators are promoted 3.2x faster than their peers.', body: 'Influence isn\'t about manipulation — it\'s about clarity, presence, and strategic alignment.', chartTitle: 'Influence IQ vs Career Velocity', bars: [
+        { label: 'Promotion speed', val: 88, color: 'emerald' },
+        { label: 'Salary growth', val: 76, color: 'amber' },
+        { label: 'Leadership rate', val: 82, color: 'sky' }
+    ]},
+    { badge: 'Perception Research', stat: '93%', head: 'of message impact comes from HOW you communicate, not what you say.', body: 'Presence, vocal delivery, and strategic framing shape perception more than content alone.', chartTitle: 'Factors in Perceived Influence', bars: [
+        { label: 'Delivery & tone', val: 93, color: 'emerald' },
+        { label: 'Content quality', val: 52, color: 'amber' },
+        { label: 'Credentials', val: 38, color: 'violet' }
+    ]},
+    { badge: 'Executive Study', stat: '78%', head: 'of executives say communication skill is the top differentiator in senior hires.', body: 'At higher levels, everyone is smart. Influence separates the promoted from the plateaued.', chartTitle: 'Hiring Factor Importance', bars: [
+        { label: 'Communication', val: 78, color: 'emerald' },
+        { label: 'Technical skill', val: 65, color: 'sky' },
+        { label: 'Experience', val: 58, color: 'amber' },
+        { label: 'Credentials', val: 42, color: 'rose' }
+    ]}
+];
+
+const tiers = [
+    { min: 85, name: 'Elite Influencer', desc: 'Top 5%. You move people effortlessly, navigate complexity with precision, and shape outcomes through exceptional communication.' },
+    { min: 70, name: 'High Influence', desc: 'Top 20%. Strong across most dimensions with room for targeted growth.' },
+    { min: 50, name: 'Developing', desc: 'Average range. Solid foundation with significant gains available.' },
+    { min: 0, name: 'Emerging', desc: 'Below average. Influence gaps are likely limiting your career trajectory.' }
+];
+
+const achievements = [
+    { q: 3, icon: '🎯', text: 'Dimension Mastered!', sub: 'Persuasion Power complete', pts: '+15 bonus IQ' },
+    { q: 6, icon: '👑', text: 'Dimension Mastered!', sub: 'Presence & Authority complete', pts: '+15 bonus IQ' },
+    { q: 9, icon: '💎', text: 'Dimension Mastered!', sub: 'Emotional Resonance complete', pts: '+15 bonus IQ' },
+    { q: 13, icon: '♟️', text: 'Dimension Mastered!', sub: 'Strategic Navigation complete', pts: '+15 bonus IQ' },
+    { q: 16, icon: '🏆', text: 'Assessment Complete!', sub: 'All 5 dimensions assessed', pts: '+25 bonus IQ' }
+];
+
+let q = 0, totalScore = 0, streak = 0, locked = false, interIdx = 0;
+let dimScores = { dim1: [], dim2: [], dim3: [], dim4: [], dim5: [] };
+
+const $ = id => document.getElementById(id);
+
+function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    $(id).classList.add('active');
+}
+
+function showAchievement(icon, text, sub, pts) {
+    $('achievementIcon').textContent = icon;
+    $('achievementText').textContent = text;
+    $('achievementSub').textContent = sub;
+    $('achievementPoints').textContent = pts;
+    $('achievementToast').classList.add('show');
+    setTimeout(() => $('achievementToast').classList.remove('show'), 2800);
+}
+
+function startGame() {
+    q = 0;
+    totalScore = 0;
+    streak = 0;
+    interIdx = 0;
+    dimScores = { dim1: [], dim2: [], dim3: [], dim4: [], dim5: [] };
+    $('topStats').style.display = 'flex';
+    $('topIQ').textContent = '0';
+    showScreen('gameScreen');
+    loadQ();
+}
+
+function loadQ() {
+    if (q >= scenarios.length) {
+        showResults();
+        return;
+    }
+    
+    // Check for interstitial (after questions 5, 10)
+    if (q === 5 || q === 10) {
+        if (interIdx < interstitials.length) {
+            showInter();
+            return;
+        }
+    }
+    
+    // Check for achievement
+    const ach = achievements.find(a => a.q === q);
+    if (ach && q > 0) {
+        showAchievement(ach.icon, ach.text, ach.sub, ach.pts);
+        totalScore += 15; // Bonus points
+    }
+    
+    locked = false;
+    const s = scenarios[q];
+    
+    $('dimIcon').textContent = s.num;
+    $('dimText').textContent = s.name;
+    $('dimNum').textContent = s.num;
+    $('qNum').textContent = q + 1;
+    
+    const percent = Math.round(((q + 1) / 16) * 100);
+    $('progPercent').textContent = percent + '%';
+    const circumference = 2 * Math.PI * 22;
+    const offset = circumference - (percent / 100) * circumference;
+    $('progRingFill').style.strokeDashoffset = offset;
+    $('progFill').style.width = percent + '%';
+    
+    $('scenarioContext').textContent = `${s.name} • Question ${q + 1}`;
+    $('scenarioText').innerHTML = s.text;
+    
+    const currentIQ = q > 0 ? Math.round(totalScore / q) : 0;
+    $('liveIQ').textContent = currentIQ;
+    $('topIQ').textContent = currentIQ;
+    $('liveStreak').textContent = streak + '🔥';
+    
+    const wrap = $('answersWrap');
+    wrap.innerHTML = '';
+    const letters = ['A', 'B', 'C', 'D'];
+    const shuffled = [...s.answers].sort(() => Math.random() - 0.5);
+    
+    shuffled.forEach((a, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'answer';
+        btn.type = 'button';
+        btn.innerHTML = `
+            <span class="answer-letter">${letters[i]}</span>
+            <span class="answer-content">
+                <span class="answer-text">${a.text}</span>
+                <span class="answer-points ${a.score >= 70 ? 'high' : a.score >= 40 ? 'mid' : 'low'}">+${a.score} IQ pts</span>
+            </span>
+        `;
+        btn._data = { ...a, dim: s.dim };
+        wrap.appendChild(btn);
+    });
+    
+    wrap.onclick = e => {
+        const btn = e.target.closest('.answer');
+        if (btn && !btn.classList.contains('locked') && btn._data) pick(btn, btn._data);
+    };
+}
+
+function pick(btn, ans) {
+    if (locked) return;
+    locked = true;
+    
+    btn.classList.add('selected');
+    document.querySelectorAll('.answer').forEach(a => a.classList.add('locked', 'reveal'));
+    
+    totalScore += ans.score;
+    if (ans.score >= 70) streak++; else streak = 0;
+    
+    const currentIQ = Math.round(totalScore / (q + 1));
+    $('liveIQ').textContent = currentIQ;
+    $('topIQ').textContent = currentIQ;
+    $('liveStreak').textContent = streak + '🔥';
+    
+    dimScores[ans.dim].push(ans.score);
+    
+    setTimeout(() => {
+        q++;
+        loadQ();
+    }, 1150);
+}
+
+function showInter() {
+    const inter = interstitials[interIdx];
+    $('interBadge').textContent = inter.badge;
+    $('interStat').textContent = inter.stat;
+    $('interHead').textContent = inter.head;
+    $('interBody').textContent = inter.body;
+    $('chartTitle').textContent = inter.chartTitle;
+    
+    const barsWrap = $('chartBars');
+    barsWrap.innerHTML = '';
+    inter.bars.forEach(bar => {
+        const row = document.createElement('div');
+        row.className = 'chart-bar-row';
+        row.innerHTML = `
+            <span class="chart-bar-label">${bar.label}</span>
+            <div class="chart-bar-track"><div class="chart-bar-fill ${bar.color}" style="width:0%"></div></div>
+            <span class="chart-bar-val">${bar.val}%</span>
+        `;
+        barsWrap.appendChild(row);
+    });
+    
+    showScreen('interScreen');
+    
+    setTimeout(() => {
+        barsWrap.querySelectorAll('.chart-bar-fill').forEach((fill, i) => {
+            fill.style.width = inter.bars[i].val + '%';
+        });
+    }, 250);
+    
+    interIdx++;
+}
+
+function continueFromInter() {
+    showScreen('gameScreen');
+    loadQ();
+}
+
+function showResults() {
+    $('topStats').style.display = 'none';
+    showScreen('resultsScreen');
+    
+    // Add final achievement bonus
+    totalScore += 25;
+    showAchievement('🏆', 'Assessment Complete!', 'All 5 dimensions assessed', '+25 bonus IQ');
+    
+    // Calculate final IQ (0-100+ scale)
+    const maxPossible = (scenarios.length * 100) + 85; // includes bonuses
+    const iq = Math.min(150, Math.round((totalScore / maxPossible) * 130)); // Scale to ~130 max for "genius" feel
+    
+    // Animate score
+    setTimeout(() => {
+        animNum($('iqScore'), 0, iq, 2500);
+        const circumference = 2 * Math.PI * 100;
+        const offset = circumference - (Math.min(iq, 100) / 100) * circumference;
+        $('iqRingFill').style.strokeDashoffset = offset;
+    }, 500);
+    
+    // Percentile (simulated based on score)
+    const percentile = Math.min(99, Math.round(iq * 0.85));
+    setTimeout(() => {
+        $('percentileFill').style.width = percentile + '%';
+        $('percentileMarker').style.left = percentile + '%';
+        $('percentileResult').textContent = `Top ${100 - percentile}% of assessed professionals`;
+    }, 900);
+    
+    // Tier
+    const normalizedScore = (iq / 130) * 100;
+    const tier = tiers.find(t => normalizedScore >= t.min);
+    setTimeout(() => {
+        $('iqTier').textContent = tier.name;
+        $('iqDesc').textContent = tier.desc;
+    }, 2000);
+    
+    // Dimension scores
+    const dimAvgs = {};
+    Object.keys(dimScores).forEach(k => {
+        const arr = dimScores[k];
+        dimAvgs[k] = arr.length > 0 ? Math.round(arr.reduce((a, b) => a + b, 0) / arr.length) : 0;
+    });
+    
+    setTimeout(() => {
+        Object.keys(dimAvgs).forEach((k, i) => {
+            const v = dimAvgs[k];
+            $(`dim${i+1}Fill`).style.width = v + '%';
+            $(`dim${i+1}Score`).textContent = v + '%';
+        });
+    }, 700);
+    
+    // Insight
+    const weakest = Object.entries(dimAvgs).sort((a, b) => a[1] - b[1])[0];
+    const dimNames = { dim1: 'Persuasion Power', dim2: 'Presence & Authority', dim3: 'Emotional Resonance', dim4: 'Strategic Navigation', dim5: 'Adaptive Clarity' };
+    const insights = {
+        dim1: 'Your ability to move people to action needs development. Focus on framing messages around audience priorities and leading with impact.',
+        dim2: 'Presence and authority are your growth edge. Work on projecting confidence, commanding attention, and speaking with conviction.',
+        dim3: 'Reading emotional cues and responding with resonance will multiply your influence. Practice acknowledgment and empathy in high-stakes moments.',
+        dim4: 'Navigating complexity and politics is where you can grow most. Develop your ability to find alignment and advocate strategically.',
+        dim5: 'Clarity under pressure is your opportunity area. Practice simplifying complex ideas and reading audience comprehension in real-time.'
+    };
+    
+    setTimeout(() => {
+        $('insightLabel').textContent = `Growth Edge: ${dimNames[weakest[0]]}`;
+        $('insightText').textContent = insights[weakest[0]];
+    }, 2600);
+    
+    window.gameResults = { iq, tier: tier.name, percentile, dimAvgs };
+}
+
+function animNum(el, start, end, dur) {
+    const t0 = performance.now();
+    function tick(now) {
+        const p = Math.min((now - t0) / dur, 1);
+        const current = start + (end - start) * (1 - Math.pow(1 - p, 3));
+        el.textContent = Math.round(current);
+        if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+}
+
+function shareResults() {
+    const r = window.gameResults;
+    const text = `My Influence Quotient: ${r.iq} IQ (${r.tier})\n\nTop ${100 - r.percentile}% of 75,000+ professionals.\n\nMeasure yours: ${location.href}`;
+    if (navigator.share) {
+        navigator.share({ title: 'My Influence Quotient', text, url: location.href }).catch(() => {});
+    } else {
+        navigator.clipboard.writeText(text).then(() => alert('Copied!')).catch(() => alert(text));
+    }
+}
+
+function selectPlan(planName) {
+    $('storeModalPlan').textContent = planName + ' Plan Selected';
+    $('storeModalBg').classList.add('show');
+    $('storeModal').classList.add('show');
+}
+
+function closeStoreModal() {
+    $('storeModalBg').classList.remove('show');
+    $('storeModal').classList.remove('show');
+}
+</script>
+</body>
+</html>
