@@ -1,9 +1,20 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <title>Influence Quotient (IQ) | Conversly</title>
+    <meta name="description" content="Measure your Influence Quotient (IQ) with Conversly's research-backed assessment. Discover your communication strengths across 5 key dimensions and unlock your potential to persuade, lead, and connect.">
+    <link rel="icon" type="image/png" href="https://image2url.com/r2/default/images/1775753086637-dd19f16a-66d1-4545-a1c6-cb72a44cf442.png">
+    <meta property="og:title" content="Influence Quotient (IQ) | Conversly">
+    <meta property="og:description" content="Measure your Influence Quotient (IQ) with Conversly's research-backed assessment. Discover your communication strengths across 5 key dimensions.">
+    <meta property="og:image" content="https://image2url.com/r2/default/images/1775752278024-8616a4ce-8371-4d88-bb5f-b40d6db1c6a1.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Influence Quotient (IQ) | Conversly">
+    <meta name="twitter:description" content="Measure your Influence Quotient (IQ) with Conversly's research-backed assessment.">
+    <meta name="twitter:image" content="https://image2url.com/r2/default/images/1775752278024-8616a4ce-8371-4d88-bb5f-b40d6db1c6a1.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
@@ -61,9 +72,13 @@
         
         .glass-pill{background:linear-gradient(135deg,var(--glass-5) 0%,var(--glass-3) 100%);border:1px solid var(--border-3);border-radius:100px;backdrop-filter:blur(var(--blur-lg));-webkit-backdrop-filter:blur(var(--blur-lg));box-shadow:0 1px 1px 0 var(--shine-2) inset,0 8px 20px -8px rgba(0,0,0,0.45)}
 
-        .app{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:16px;min-height:100dvh;display:flex;flex-direction:column}
+        .app{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:12px;min-height:100dvh;display:flex;flex-direction:column}
         
-        .topbar{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;margin-bottom:20px}
+        @media(max-height:740px){
+            .app{padding:8px}
+        }
+        
+        .topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;margin-bottom:12px}
         .topbar-brand{font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-35)}
         .topbar-brand b{background:linear-gradient(135deg,var(--emerald-400),var(--emerald-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
         .topbar-stats{display:none;align-items:center;gap:18px}
@@ -76,118 +91,148 @@
         @keyframes screenIn{from{opacity:0;transform:translateY(28px) scale(0.96)}to{opacity:1;transform:translateY(0) scale(1)}}
 
         /* INTRO */
-        .intro{flex:1;display:flex;flex-direction:column;justify-content:center;padding:10px 0 30px}
-        .intro-badge{display:inline-flex;align-items:center;gap:12px;padding:14px 22px;margin-bottom:32px;width:fit-content}
-        .intro-badge svg{width:16px;height:16px;color:var(--emerald-400)}
-        .intro-badge span{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:linear-gradient(135deg,var(--emerald-300),var(--emerald-500));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-        .intro-title{font-size:clamp(40px,10vw,52px);font-weight:800;line-height:1.02;letter-spacing:-0.05em;margin-bottom:18px}
+        .intro{flex:1;display:flex;flex-direction:column;justify-content:center;padding:6px 0 16px}
+        .intro-badge{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;margin-bottom:20px;width:fit-content}
+        .intro-badge svg{width:14px;height:14px;color:var(--emerald-400)}
+        .intro-badge span{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:linear-gradient(135deg,var(--emerald-300),var(--emerald-500));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .intro-title{font-size:clamp(32px,9vw,46px);font-weight:800;line-height:1.02;letter-spacing:-0.05em;margin-bottom:12px}
         .intro-title .line{display:block;text-shadow:0 0 120px rgba(255,255,255,0.05)}
         .intro-title .gradient{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:600;background:linear-gradient(135deg,var(--emerald-400) 0%,var(--emerald-200) 35%,var(--emerald-400) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% 200%;animation:shimmer 5s ease-in-out infinite;filter:drop-shadow(0 0 50px rgba(52,211,153,0.4))}
         @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-        .intro-sub{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--emerald-400);margin-bottom:18px}
-        .intro-desc{font-size:15px;color:var(--text-50);line-height:1.72;margin-bottom:36px;max-width:390px}
+        .intro-sub{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--emerald-400);margin-bottom:12px}
+        .intro-desc{font-size:14px;color:var(--text-50);line-height:1.6;margin-bottom:24px;max-width:390px}
 
-        .science-card{padding:22px;margin-bottom:32px}
-        .science-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}
-        .science-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(52,211,153,0.15),rgba(52,211,153,0.05));border:1px solid rgba(52,211,153,0.2);border-radius:14px}
-        .science-icon svg{width:22px;height:22px;color:var(--emerald-400)}
-        .science-title{font-size:13px;font-weight:700;color:var(--text-90)}
-        .science-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-        .science-stat{display:flex;flex-direction:column;padding:14px;background:var(--glass-2);border:1px solid var(--border-1);border-radius:12px}
-        .science-stat-num{font-size:22px;font-weight:800;background:linear-gradient(135deg,var(--emerald-400),var(--emerald-200));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
-        .science-stat-label{font-size:10px;color:var(--text-35);margin-top:4px}
+        .science-card{padding:18px;margin-bottom:20px}
+        .science-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+        .science-icon{width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(52,211,153,0.15),rgba(52,211,153,0.05));border:1px solid rgba(52,211,153,0.2);border-radius:12px}
+        .science-icon svg{width:18px;height:18px;color:var(--emerald-400)}
+        .science-title{font-size:12px;font-weight:700;color:var(--text-90)}
+        .science-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+        .science-stat{display:flex;flex-direction:column;padding:12px;background:var(--glass-2);border:1px solid var(--border-1);border-radius:10px}
+        .science-stat-num{font-size:18px;font-weight:800;background:linear-gradient(135deg,var(--emerald-400),var(--emerald-200));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+        .science-stat-label{font-size:9px;color:var(--text-35);margin-top:3px}
 
-        .dimensions-section{margin-bottom:36px}
-        .dimensions-label{font-size:8px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-20);margin-bottom:14px}
-        .dimensions-list{display:flex;flex-direction:column;gap:8px}
-        .dimension-row{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--glass-2);border:1px solid var(--border-1);border-radius:14px;transition:all 0.3s}
+        .dimensions-section{margin-bottom:24px}
+        .dimensions-label{font-size:8px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-20);margin-bottom:10px}
+        .dimensions-list{display:flex;flex-direction:column;gap:6px}
+        .dimension-row{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--glass-2);border:1px solid var(--border-1);border-radius:12px;transition:all 0.3s}
         .dimension-row:hover{background:var(--glass-4);border-color:var(--border-2)}
-        .dimension-num{width:26px;height:26px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--emerald-600),var(--emerald-700));border-radius:8px;font-size:11px;font-weight:800;color:white}
-        .dimension-text{font-size:12px;color:var(--text-70);font-weight:600}
+        .dimension-num{width:24px;height:24px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--emerald-600),var(--emerald-700));border-radius:7px;font-size:10px;font-weight:800;color:white}
+        .dimension-text{font-size:11px;color:var(--text-70);font-weight:600}
+        
+        @media(max-height:740px){
+            .intro{padding:2px 0 10px}
+            .intro-badge{padding:8px 14px;margin-bottom:14px}
+            .intro-title{font-size:clamp(28px,8vw,38px);margin-bottom:8px}
+            .intro-sub{margin-bottom:8px}
+            .intro-desc{font-size:13px;margin-bottom:16px;line-height:1.5}
+            .science-card{padding:14px;margin-bottom:14px}
+            .science-stats{gap:8px}
+            .science-stat{padding:10px}
+            .science-stat-num{font-size:16px}
+            .dimensions-section{margin-bottom:16px}
+            .dimensions-list{gap:4px}
+            .dimension-row{padding:8px 12px}
+        }
+        
+        @media(max-height:640px){
+            .dimensions-section{display:none}
+        }
 
-        .btn{display:flex;align-items:center;justify-content:center;gap:12px;padding:20px 36px;border:none;border-radius:20px;font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:all 0.4s var(--ease);position:relative;overflow:hidden}
+        .btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:16px 30px;border:none;border-radius:18px;font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;transition:all 0.4s var(--ease);position:relative;overflow:hidden}
         .btn::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0.18) 0%,transparent 50%);pointer-events:none}
         .btn-primary{background:linear-gradient(135deg,var(--emerald-500) 0%,var(--emerald-600) 100%);color:white;box-shadow:0 1px 1px 0 rgba(255,255,255,0.22) inset,0 -2px 1px 0 rgba(0,0,0,0.12) inset,0 14px 40px -10px rgba(16,185,129,0.55),0 0 0 1px rgba(52,211,153,0.25)}
         .btn-primary:hover{transform:translateY(-5px);box-shadow:0 1px 1px 0 rgba(255,255,255,0.28) inset,0 22px 55px -10px rgba(16,185,129,0.65)}
         .btn-full{width:100%}
-        .btn svg{width:18px;height:18px}
+        .btn svg{width:16px;height:16px}
 
         /* GAME */
-        .game-header{margin-bottom:18px}
-        .dimension-indicator{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-        .dimension-badge{display:flex;align-items:center;gap:10px;padding:10px 16px;background:linear-gradient(135deg,rgba(52,211,153,0.12),rgba(52,211,153,0.04));border:1px solid rgba(52,211,153,0.18);border-radius:12px}
-        .dimension-badge-icon{width:24px;height:24px;display:flex;align-items:center;justify-content:center;background:var(--emerald-600);border-radius:7px;font-size:11px;font-weight:800;color:white}
-        .dimension-badge-text{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--emerald-400)}
-        .question-count{font-size:11px;color:var(--text-35);font-weight:600}
+        .game-header{margin-bottom:12px}
+        .dimension-indicator{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+        .dimension-badge{display:flex;align-items:center;gap:8px;padding:8px 14px;background:linear-gradient(135deg,rgba(52,211,153,0.12),rgba(52,211,153,0.04));border:1px solid rgba(52,211,153,0.18);border-radius:10px}
+        .dimension-badge-icon{width:22px;height:22px;display:flex;align-items:center;justify-content:center;background:var(--emerald-600);border-radius:6px;font-size:10px;font-weight:800;color:white}
+        .dimension-badge-text{font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--emerald-400)}
+        .question-count{font-size:10px;color:var(--text-35);font-weight:600}
         .question-count span{color:var(--text-70)}
 
-        .progress-ring-wrap{display:flex;align-items:center;gap:16px;margin-bottom:18px}
-        .progress-ring{width:50px;height:50px;position:relative}
+        .progress-ring-wrap{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+        .progress-ring{width:44px;height:44px;position:relative}
         .progress-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
         .progress-ring-bg{fill:none;stroke:var(--glass-4);stroke-width:4}
         .progress-ring-fill{fill:none;stroke:url(#progGrad);stroke-width:4;stroke-linecap:round;stroke-dasharray:138;stroke-dashoffset:138;transition:stroke-dashoffset 0.6s var(--ease-out)}
-        .progress-ring-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:12px;font-weight:800;color:var(--emerald-400)}
+        .progress-ring-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:10px;font-weight:800;color:var(--emerald-400)}
         .progress-info{flex:1}
-        .progress-label{font-size:10px;font-weight:600;color:var(--text-35);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:4px}
-        .progress-bar{height:5px;background:var(--glass-4);border-radius:3px;overflow:hidden}
-        .progress-fill{height:100%;background:linear-gradient(90deg,var(--emerald-600),var(--emerald-500),var(--emerald-400));border-radius:3px;transition:width 0.6s var(--ease-out)}
+        .progress-label{font-size:9px;font-weight:600;color:var(--text-35);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:3px}
+        .progress-bar{height:4px;background:var(--glass-4);border-radius:2px;overflow:hidden}
+        .progress-fill{height:100%;background:linear-gradient(90deg,var(--emerald-600),var(--emerald-500),var(--emerald-400));border-radius:2px;transition:width 0.6s var(--ease-out)}
 
-        .achievement-toast{position:fixed;top:22px;left:50%;transform:translateX(-50%) translateY(-120px);padding:16px 26px;background:linear-gradient(135deg,rgba(52,211,153,0.18),rgba(52,211,153,0.06));border:1px solid rgba(52,211,153,0.28);border-radius:18px;backdrop-filter:blur(24px);display:flex;align-items:center;gap:14px;z-index:100;transition:transform 0.55s var(--ease-spring);box-shadow:0 12px 45px -12px rgba(52,211,153,0.35)}
+        .achievement-toast{position:fixed;top:18px;left:50%;transform:translateX(-50%) translateY(-120px);padding:14px 22px;background:linear-gradient(135deg,rgba(52,211,153,0.18),rgba(52,211,153,0.06));border:1px solid rgba(52,211,153,0.28);border-radius:16px;backdrop-filter:blur(24px);display:flex;align-items:center;gap:12px;z-index:100;transition:transform 0.55s var(--ease-spring);box-shadow:0 12px 45px -12px rgba(52,211,153,0.35)}
         .achievement-toast.show{transform:translateX(-50%) translateY(0)}
-        .achievement-icon{font-size:26px}
+        .achievement-icon{width:24px;height:24px;display:flex;align-items:center;justify-content:center}
+        .achievement-icon svg{width:24px;height:24px;color:var(--emerald-400)}
         .achievement-content{}
-        .achievement-text{font-size:13px;font-weight:700;color:var(--emerald-300)}
-        .achievement-sub{font-size:10px;color:var(--text-50)}
-        .achievement-points{font-size:10px;font-weight:700;color:var(--emerald-400);margin-top:2px}
+        .achievement-text{font-size:12px;font-weight:700;color:var(--emerald-300)}
+        .achievement-sub{font-size:9px;color:var(--text-50)}
+        .achievement-points{font-size:9px;font-weight:700;color:var(--emerald-400);margin-top:1px}
 
-        .scenario-card{padding:34px 28px;margin-bottom:18px}
-        .scenario-context{font-size:9px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-20);margin-bottom:16px}
-        .scenario-text{font-size:17px;line-height:1.68;color:var(--text-90)}
+        .scenario-card{padding:22px 20px;margin-bottom:12px}
+        .scenario-context{font-size:8px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-20);margin-bottom:12px}
+        .scenario-text{font-size:15px;line-height:1.58;color:var(--text-90)}
         .scenario-text b{color:var(--text-100);font-weight:700}
 
-        .answers-wrap{display:flex;flex-direction:column;gap:12px;margin-bottom:18px}
-        .answer{display:flex;align-items:flex-start;gap:15px;padding:20px 20px;background:linear-gradient(140deg,var(--glass-4) 0%,var(--glass-2) 100%);border:1.5px solid var(--border-2);border-radius:20px;cursor:pointer;transition:all 0.38s var(--ease);text-align:left;font-family:var(--font);position:relative;overflow:hidden}
+        .answers-wrap{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+        .answer{display:flex;align-items:flex-start;gap:12px;padding:16px 16px;background:linear-gradient(140deg,var(--glass-4) 0%,var(--glass-2) 100%);border:1.5px solid var(--border-2);border-radius:16px;cursor:pointer;transition:all 0.38s var(--ease);text-align:left;font-family:var(--font);position:relative;overflow:hidden}
         .answer::before{content:'';position:absolute;top:0;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,var(--shine-1),transparent);pointer-events:none}
-        .answer:hover:not(.locked){background:var(--glass-5);border-color:var(--border-3);transform:translateY(-4px);box-shadow:0 16px 40px -12px rgba(0,0,0,0.45)}
+        .answer:hover:not(.locked){background:var(--glass-5);border-color:var(--border-3);transform:translateY(-3px);box-shadow:0 12px 35px -12px rgba(0,0,0,0.45)}
         .answer.selected{border-color:var(--emerald-400);background:linear-gradient(140deg,rgba(52,211,153,0.1),rgba(52,211,153,0.03))}
         .answer.selected::before{background:linear-gradient(90deg,transparent,rgba(52,211,153,0.35),transparent)}
         .answer.locked{opacity:0.4;cursor:default;transform:none}
         .answer.locked.selected{opacity:1}
-        .answer-letter{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:var(--glass-5);border:1px solid var(--border-2);border-radius:11px;font-size:12px;font-weight:800;color:var(--text-35);flex-shrink:0}
+        .answer-letter{width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:var(--glass-5);border:1px solid var(--border-2);border-radius:9px;font-size:11px;font-weight:800;color:var(--text-35);flex-shrink:0}
         .answer.selected .answer-letter{background:linear-gradient(135deg,var(--emerald-500),var(--emerald-400));border-color:transparent;color:white}
-        .answer-content{flex:1;display:flex;flex-direction:column;gap:7px}
-        .answer-text{font-size:13px;color:var(--text-70);line-height:1.58}
-        .answer-points{font-size:10px;font-weight:700;color:var(--text-35);opacity:0;transition:opacity 0.35s}
+        .answer-content{flex:1;display:flex;flex-direction:column;gap:5px}
+        .answer-text{font-size:12px;color:var(--text-70);line-height:1.52}
+        .answer-points{font-size:9px;font-weight:700;color:var(--text-35);opacity:0;transition:opacity 0.35s}
         .answer.reveal .answer-points{opacity:1}
         .answer-points.high{color:var(--emerald-400)}
         .answer-points.mid{color:var(--amber-400)}
         .answer-points.low{color:var(--rose-400)}
+        
+        .custom-answer{display:flex;flex-direction:column;gap:8px;padding:14px 16px;background:var(--glass-3);border:1.5px dashed var(--border-3);border-radius:16px;margin-top:4px}
+        .custom-answer-label{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-35)}
+        .custom-answer-input{background:var(--glass-2);border:1px solid var(--border-2);border-radius:10px;padding:12px 14px;font-family:var(--font);font-size:12px;color:var(--text-80);resize:none;outline:none;transition:all 0.3s}
+        .custom-answer-input:focus{border-color:var(--emerald-500);background:var(--glass-4)}
+        .custom-answer-input::placeholder{color:var(--text-35)}
+        .custom-answer-submit{align-self:flex-end;padding:10px 18px;background:linear-gradient(135deg,var(--emerald-600),var(--emerald-700));border:none;border-radius:10px;font-family:var(--font);font-size:11px;font-weight:700;color:white;cursor:pointer;transition:all 0.3s}
+        .custom-answer-submit:hover{transform:translateY(-2px);box-shadow:0 8px 20px -8px rgba(16,185,129,0.5)}
+        .custom-answer-submit:disabled{opacity:0.5;cursor:not-allowed;transform:none}
 
-        .live-iq{display:flex;justify-content:center;padding:16px;background:var(--glass-2);border:1px solid var(--border-1);border-radius:16px}
-        .live-iq-content{display:flex;align-items:center;gap:20px}
+        .live-iq{display:flex;justify-content:center;padding:12px;background:var(--glass-2);border:1px solid var(--border-1);border-radius:14px}
+        .live-iq-content{display:flex;align-items:center;gap:16px}
         .live-iq-score{display:flex;flex-direction:column;align-items:center}
-        .live-iq-num{font-size:32px;font-weight:900;background:linear-gradient(135deg,var(--emerald-400),var(--emerald-200));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
-        .live-iq-label{font-size:9px;color:var(--text-35);font-weight:700;letter-spacing:0.08em;text-transform:uppercase}
-        .live-iq-divider{width:1px;height:40px;background:var(--border-2)}
+        .live-iq-num{font-size:26px;font-weight:900;background:linear-gradient(135deg,var(--emerald-400),var(--emerald-200));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+        .live-iq-label{font-size:8px;color:var(--text-35);font-weight:700;letter-spacing:0.08em;text-transform:uppercase}
+        .live-iq-divider{width:1px;height:32px;background:var(--border-2)}
         .live-iq-streak{display:flex;flex-direction:column;align-items:center}
-        .live-iq-streak-num{font-size:18px;font-weight:800;color:var(--amber-400)}
-        .live-iq-streak-label{font-size:9px;color:var(--text-35);font-weight:600}
+        .live-iq-streak-num{font-size:15px;font-weight:800;color:var(--amber-400);display:flex;align-items:center;gap:4px}
+        .live-iq-streak-num svg{width:14px;height:14px;color:var(--amber-400)}
+        .live-iq-streak-label{font-size:8px;color:var(--text-35);font-weight:600}
 
         /* INTERSTITIAL */
-        .inter{flex:1;display:flex;flex-direction:column;justify-content:center;padding:20px 0}
-        .inter-badge{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;margin-bottom:26px;width:fit-content}
-        .inter-badge svg{width:14px;height:14px;color:var(--emerald-400)}
-        .inter-badge span{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:linear-gradient(135deg,var(--emerald-300),var(--emerald-500));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-        .inter-stat{font-size:clamp(60px,16vw,78px);font-weight:900;background:linear-gradient(135deg,var(--emerald-400),var(--emerald-200));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:18px;filter:drop-shadow(0 0 35px rgba(52,211,153,0.35))}
-        .inter-head{font-size:21px;font-weight:700;color:var(--text-100);line-height:1.38;margin-bottom:14px}
-        .inter-body{font-size:14px;color:var(--text-50);line-height:1.68;margin-bottom:30px}
-        .inter-chart{padding:26px;margin-bottom:30px}
-        .chart-title{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-20);margin-bottom:18px}
-        .chart-bars{display:flex;flex-direction:column;gap:16px}
-        .chart-bar-row{display:flex;align-items:center;gap:14px}
-        .chart-bar-label{width:90px;font-size:11px;color:var(--text-50);font-weight:500}
-        .chart-bar-track{flex:1;height:12px;background:var(--glass-4);border-radius:6px;overflow:hidden;position:relative}
-        .chart-bar-fill{height:100%;border-radius:6px;transition:width 1.2s var(--ease-out)}
+        .inter{flex:1;display:flex;flex-direction:column;justify-content:center;padding:10px 0}
+        .inter-badge{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;margin-bottom:18px;width:fit-content}
+        .inter-badge svg{width:12px;height:12px;color:var(--emerald-400)}
+        .inter-badge span{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:linear-gradient(135deg,var(--emerald-300),var(--emerald-500));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .inter-stat{font-size:clamp(48px,14vw,68px);font-weight:900;background:linear-gradient(135deg,var(--emerald-400),var(--emerald-200));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:14px;filter:drop-shadow(0 0 35px rgba(52,211,153,0.35))}
+        .inter-head{font-size:18px;font-weight:700;color:var(--text-100);line-height:1.38;margin-bottom:12px}
+        .inter-body{font-size:13px;color:var(--text-50);line-height:1.6;margin-bottom:20px}
+        .inter-chart{padding:20px;margin-bottom:20px}
+        .chart-title{font-size:8px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-20);margin-bottom:14px}
+        .chart-bars{display:flex;flex-direction:column;gap:12px}
+        .chart-bar-row{display:flex;align-items:center;gap:12px}
+        .chart-bar-label{width:85px;font-size:10px;color:var(--text-50);font-weight:500}
+        .chart-bar-track{flex:1;height:10px;background:var(--glass-4);border-radius:5px;overflow:hidden;position:relative}
+        .chart-bar-fill{height:100%;border-radius:5px;transition:width 1.2s var(--ease-out)}
         .chart-bar-fill.emerald{background:linear-gradient(90deg,var(--emerald-600),var(--emerald-500),var(--emerald-400))}
         .chart-bar-fill.sky{background:linear-gradient(90deg,var(--sky-500),var(--sky-400))}
         .chart-bar-fill.amber{background:linear-gradient(90deg,var(--amber-500),var(--amber-400))}
@@ -196,80 +241,101 @@
         .chart-bar-val{width:45px;text-align:right;font-size:13px;font-weight:700;color:var(--text-70)}
 
         /* RESULTS */
-        .results{padding:20px 0}
-        .results-head{text-align:center;margin-bottom:32px}
-        .iq-score-wrap{position:relative;width:240px;height:240px;margin:0 auto 30px}
+        .results{padding:10px 0}
+        .results-head{text-align:center;margin-bottom:24px}
+        .iq-score-wrap{position:relative;width:200px;height:200px;margin:0 auto 24px}
         .iq-ring{width:100%;height:100%}
         .iq-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
-        .iq-ring-bg{fill:none;stroke:var(--glass-4);stroke-width:14}
-        .iq-ring-fill{fill:none;stroke:url(#iqGrad);stroke-width:14;stroke-linecap:round;stroke-dasharray:628;stroke-dashoffset:628;transition:stroke-dashoffset 2.8s var(--ease-out)}
+        .iq-ring-bg{fill:none;stroke:var(--glass-4);stroke-width:12}
+        .iq-ring-fill{fill:none;stroke:url(#iqGrad);stroke-width:12;stroke-linecap:round;stroke-dasharray:565;stroke-dashoffset:565;transition:stroke-dashoffset 2.8s var(--ease-out)}
         .iq-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
-        .iq-score{font-size:72px;font-weight:900;background:linear-gradient(135deg,var(--emerald-400),var(--emerald-200));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
-        .iq-label{font-size:11px;color:var(--text-35);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-top:4px}
-        .iq-tier{font-size:26px;font-weight:800;background:linear-gradient(135deg,var(--text-100),var(--emerald-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px}
-        .iq-desc{font-size:14px;color:var(--text-50);max-width:340px;margin:0 auto;line-height:1.62}
+        .iq-score{font-size:58px;font-weight:900;background:linear-gradient(135deg,var(--emerald-400),var(--emerald-200));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+        .iq-label{font-size:10px;color:var(--text-35);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-top:3px}
+        .iq-tier{font-size:22px;font-weight:800;background:linear-gradient(135deg,var(--text-100),var(--emerald-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
+        .iq-desc{font-size:13px;color:var(--text-50);max-width:320px;margin:0 auto;line-height:1.55}
 
-        .percentile-card{padding:22px;margin-bottom:20px;text-align:center}
-        .percentile-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-20);margin-bottom:14px}
-        .percentile-visual{position:relative;height:50px;margin-bottom:14px}
-        .percentile-track{position:absolute;bottom:0;left:0;right:0;height:16px;background:var(--glass-4);border-radius:8px;overflow:hidden}
-        .percentile-fill{height:100%;background:linear-gradient(90deg,var(--emerald-700),var(--emerald-600),var(--emerald-500),var(--emerald-400));border-radius:8px;transition:width 2.2s var(--ease-out)}
-        .percentile-marker{position:absolute;bottom:12px;width:4px;height:35px;background:var(--text-100);border-radius:2px;transition:left 2.2s var(--ease-out);box-shadow:0 0 15px rgba(255,255,255,0.6)}
-        .percentile-marker::after{content:'You';position:absolute;bottom:100%;left:50%;transform:translateX(-50%);font-size:9px;font-weight:700;color:var(--emerald-400);white-space:nowrap;margin-bottom:4px}
-        .percentile-labels{display:flex;justify-content:space-between;font-size:9px;color:var(--text-35)}
-        .percentile-result{font-size:14px;font-weight:700;color:var(--emerald-400);margin-top:14px}
+        .percentile-card{padding:18px;margin-bottom:16px;text-align:center}
+        .percentile-label{font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-20);margin-bottom:12px}
+        .percentile-visual{position:relative;height:44px;margin-bottom:12px}
+        .percentile-track{position:absolute;bottom:0;left:0;right:0;height:14px;background:var(--glass-4);border-radius:7px;overflow:hidden}
+        .percentile-fill{height:100%;background:linear-gradient(90deg,var(--emerald-700),var(--emerald-600),var(--emerald-500),var(--emerald-400));border-radius:7px;transition:width 2.2s var(--ease-out)}
+        .percentile-marker{position:absolute;bottom:10px;width:3px;height:30px;background:var(--text-100);border-radius:2px;transition:left 2.2s var(--ease-out);box-shadow:0 0 15px rgba(255,255,255,0.6)}
+        .percentile-marker::after{content:'You';position:absolute;bottom:100%;left:50%;transform:translateX(-50%);font-size:8px;font-weight:700;color:var(--emerald-400);white-space:nowrap;margin-bottom:3px}
+        .percentile-labels{display:flex;justify-content:space-between;font-size:8px;color:var(--text-35)}
+        .percentile-result{font-size:13px;font-weight:700;color:var(--emerald-400);margin-top:12px}
 
-        .dimensions-breakdown{padding:26px;margin-bottom:20px}
-        .dimensions-title{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-20);margin-bottom:22px}
-        .dim-row{display:flex;align-items:center;gap:16px;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border-1)}
+        .dimensions-breakdown{padding:20px;margin-bottom:16px}
+        .dimensions-title{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-20);margin-bottom:18px}
+        .dim-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border-1)}
         .dim-row:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
-        .dim-row-num{width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--emerald-600),var(--emerald-700));border-radius:10px;font-size:13px;font-weight:800;color:white;flex-shrink:0}
+        .dim-row-num{width:30px;height:30px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--emerald-600),var(--emerald-700));border-radius:9px;font-size:12px;font-weight:800;color:white;flex-shrink:0}
         .dim-row-content{flex:1}
-        .dim-row-name{font-size:13px;font-weight:600;color:var(--text-90);margin-bottom:7px}
-        .dim-row-bar{height:7px;background:var(--glass-4);border-radius:4px;overflow:hidden}
-        .dim-row-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--emerald-600),var(--emerald-500),var(--emerald-400));transition:width 1.6s var(--ease-out)}
-        .dim-row-score{font-size:15px;font-weight:800;color:var(--text-70);width:50px;text-align:right}
+        .dim-row-name{font-size:12px;font-weight:600;color:var(--text-90);margin-bottom:5px}
+        .dim-row-bar{height:6px;background:var(--glass-4);border-radius:3px;overflow:hidden}
+        .dim-row-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--emerald-600),var(--emerald-500),var(--emerald-400));transition:width 1.6s var(--ease-out)}
+        .dim-row-score{font-size:14px;font-weight:800;color:var(--text-70);width:45px;text-align:right}
 
-        .insight-section{padding:28px;background:linear-gradient(138deg,rgba(52,211,153,0.08),rgba(110,231,183,0.03));border:1px solid rgba(52,211,153,0.14);border-radius:26px;margin-bottom:20px;position:relative;overflow:hidden}
+        .insight-section{padding:22px;background:linear-gradient(138deg,rgba(52,211,153,0.08),rgba(110,231,183,0.03));border:1px solid rgba(52,211,153,0.14);border-radius:22px;margin-bottom:16px;position:relative;overflow:hidden}
         .insight-section::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(52,211,153,0.4),transparent)}
-        .insight-head{display:flex;align-items:center;gap:18px;margin-bottom:18px}
-        .insight-icon{width:50px;height:50px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--emerald-500),var(--emerald-600));border-radius:16px;box-shadow:0 8px 25px -8px rgba(16,185,129,0.55)}
-        .insight-icon svg{width:24px;height:24px;color:white}
-        .insight-label{font-size:16px;font-weight:700;color:var(--text-100)}
-        .insight-text{font-size:14px;color:var(--text-50);line-height:1.72}
+        .insight-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+        .insight-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--emerald-500),var(--emerald-600));border-radius:14px;box-shadow:0 8px 25px -8px rgba(16,185,129,0.55)}
+        .insight-icon svg{width:20px;height:20px;color:white}
+        .insight-label{font-size:14px;font-weight:700;color:var(--text-100)}
+        .insight-text{font-size:13px;color:var(--text-50);line-height:1.65}
 
         /* Pricing */
-        .pricing-section{padding:30px 0;margin-bottom:20px}
-        .pricing-header{text-align:center;margin-bottom:30px}
-        .pricing-title{font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--text-100),var(--emerald-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px}
-        .pricing-sub{font-size:14px;color:var(--text-35);line-height:1.58}
-        .pricing-cards{display:flex;flex-direction:column;gap:20px}
-        .plan-card{padding:28px;position:relative;transition:all 0.38s var(--ease)}
-        .plan-card:hover{transform:translateY(-6px)}
-        .plan-card.featured{border-color:var(--emerald-400);background:linear-gradient(158deg,rgba(52,211,153,0.1) 0%,var(--glass-3) 38%,var(--glass-4) 100%);margin-top:20px}
+        .pricing-section{padding:20px 0;margin-bottom:16px}
+        .pricing-header{text-align:center;margin-bottom:24px}
+        .pricing-title{font-size:20px;font-weight:800;background:linear-gradient(135deg,var(--text-100),var(--emerald-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
+        .pricing-sub{font-size:13px;color:var(--text-35);line-height:1.5}
+        .pricing-cards{display:flex;flex-direction:column;gap:16px}
+        .plan-card{padding:24px;position:relative;transition:all 0.38s var(--ease)}
+        .plan-card:hover{transform:translateY(-4px)}
+        .plan-card.featured{border-color:var(--emerald-400);background:linear-gradient(158deg,rgba(52,211,153,0.1) 0%,var(--glass-3) 38%,var(--glass-4) 100%);margin-top:24px}
         .plan-card.featured::before{background:linear-gradient(90deg,transparent,rgba(52,211,153,0.45),transparent)}
-        .plan-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:linear-gradient(135deg,var(--emerald-500),var(--emerald-600));border-radius:100px;font-size:9px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:white;box-shadow:0 8px 25px -8px rgba(16,185,129,0.55)}
-        .plan-badge svg{width:11px;height:11px}
-        .plan-name{font-size:22px;font-weight:800;color:var(--text-100);margin-bottom:5px}
-        .plan-tagline{font-size:12px;color:var(--text-35);margin-bottom:20px}
-        .plan-price{display:flex;align-items:baseline;gap:5px;margin-bottom:24px}
-        .plan-amount{font-size:44px;font-weight:800;background:linear-gradient(135deg,var(--text-100),var(--emerald-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-        .plan-period{font-size:15px;color:var(--text-35)}
-        .plan-features{list-style:none;margin-bottom:28px}
-        .plan-features li{display:flex;align-items:flex-start;gap:13px;font-size:13px;color:var(--text-50);line-height:1.58;margin-bottom:13px}
+        .plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:6px;padding:7px 16px;background:linear-gradient(135deg,var(--emerald-500),var(--emerald-600));border-radius:100px;font-size:8px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:white;box-shadow:0 8px 25px -8px rgba(16,185,129,0.55)}
+        .plan-badge svg{width:10px;height:10px}
+        .plan-name{font-size:18px;font-weight:800;color:var(--text-100);margin-bottom:4px}
+        .plan-tagline{font-size:11px;color:var(--text-35);margin-bottom:16px}
+        .plan-price{display:flex;align-items:baseline;gap:4px;margin-bottom:18px}
+        .plan-amount{font-size:36px;font-weight:800;background:linear-gradient(135deg,var(--text-100),var(--emerald-300));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .plan-period{font-size:13px;color:var(--text-35)}
+        .plan-features{list-style:none;margin-bottom:22px}
+        .plan-features li{display:flex;align-items:flex-start;gap:11px;font-size:12px;color:var(--text-50);line-height:1.5;margin-bottom:11px}
         .plan-features li:last-child{margin-bottom:0}
-        .plan-features li::before{content:'';width:20px;height:20px;flex-shrink:0;margin-top:1px;background:linear-gradient(135deg,var(--emerald-500),var(--emerald-400));border-radius:50%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");background-size:12px;background-repeat:no-repeat;background-position:center}
-        .plan-btn{width:100%;padding:18px 28px;border:none;border-radius:18px;font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;transition:all 0.38s var(--ease);display:flex;align-items:center;justify-content:center;gap:11px}
-        .plan-btn svg{width:17px;height:17px}
+        .plan-features li::before{content:'';width:18px;height:18px;flex-shrink:0;margin-top:1px;background:linear-gradient(135deg,var(--emerald-500),var(--emerald-400));border-radius:50%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");background-size:11px;background-repeat:no-repeat;background-position:center}
+        .plan-btn{width:100%;padding:16px 24px;border:none;border-radius:16px;font-family:var(--font);font-size:13px;font-weight:700;cursor:pointer;transition:all 0.38s var(--ease);display:flex;align-items:center;justify-content:center;gap:10px}
+        .plan-btn svg{width:15px;height:15px}
         .plan-btn-secondary{background:var(--glass-5);border:1px solid var(--border-3);color:var(--text-90)}
         .plan-btn-secondary:hover{background:var(--glass-6);border-color:var(--border-4)}
         .plan-btn-primary{background:linear-gradient(135deg,var(--emerald-500),var(--emerald-600));color:white;box-shadow:0 1px 1px 0 rgba(255,255,255,0.22) inset,0 12px 35px -10px rgba(16,185,129,0.55)}
-        .plan-btn-primary:hover{transform:translateY(-4px);box-shadow:0 1px 1px 0 rgba(255,255,255,0.28) inset,0 18px 45px -10px rgba(16,185,129,0.65)}
+        .plan-btn-primary:hover{transform:translateY(-3px);box-shadow:0 1px 1px 0 rgba(255,255,255,0.28) inset,0 18px 45px -10px rgba(16,185,129,0.65)}
 
-        .share-section{text-align:center;padding:24px 0;border-top:1px solid var(--border-1);margin-top:12px}
-        .share-btn-link{display:inline-flex;align-items:center;gap:11px;padding:15px 26px;background:var(--glass-3);border:1px solid var(--border-2);border-radius:14px;font-size:12px;font-weight:600;color:var(--text-50);cursor:pointer;transition:all 0.35s}
+        .share-section{text-align:center;padding:20px 0;border-top:1px solid var(--border-1);margin-top:10px}
+        .share-btn-link{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;background:var(--glass-3);border:1px solid var(--border-2);border-radius:12px;font-size:11px;font-weight:600;color:var(--text-50);cursor:pointer;transition:all 0.35s}
         .share-btn-link:hover{background:var(--glass-5);border-color:var(--border-3);color:var(--text-70)}
-        .share-btn-link svg{width:15px;height:15px}
+        .share-btn-link svg{width:14px;height:14px}
+        
+        @media(max-height:700px){
+            .results{padding:6px 0}
+            .results-head{margin-bottom:18px}
+            .iq-score-wrap{width:160px;height:160px;margin-bottom:18px}
+            .iq-score{font-size:46px}
+            .iq-tier{font-size:18px}
+            .iq-desc{font-size:12px}
+            .percentile-card{padding:14px;margin-bottom:12px}
+            .dimensions-breakdown{padding:16px;margin-bottom:12px}
+            .insight-section{padding:18px;margin-bottom:12px}
+            .pricing-section{padding:16px 0;margin-bottom:12px}
+            .pricing-header{margin-bottom:18px}
+            .plan-card{padding:18px}
+            .plan-card.featured{margin-top:20px}
+        }
+        
+        @media(max-width:400px){
+            .science-stats{grid-template-columns:1fr}
+            .dim-row-name{font-size:11px}
+        }
 
         /* Store Modal */
         .store-modal-bg{position:fixed;inset:0;background:rgba(2,5,4,0.88);backdrop-filter:blur(24px);z-index:300;opacity:0;visibility:hidden;pointer-events:none;transition:all 0.42s var(--ease)}
@@ -312,7 +378,7 @@
     </div>
 
     <div class="achievement-toast" id="achievementToast">
-        <span class="achievement-icon" id="achievementIcon">🎯</span>
+        <span class="achievement-icon" id="achievementIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
         <div class="achievement-content">
             <div class="achievement-text" id="achievementText">Dimension Complete!</div>
             <div class="achievement-sub" id="achievementSub">Persuasion mastered</div>
@@ -367,7 +433,7 @@
                             <div class="science-stat-label">Prediction accuracy</div>
                         </div>
                         <div class="science-stat">
-                            <div class="science-stat-num">16</div>
+                            <div class="science-stat-num">28</div>
                             <div class="science-stat-label">Scenario questions</div>
                         </div>
                     </div>
@@ -399,7 +465,7 @@
                         <div class="dimension-badge-icon" id="dimIcon">1</div>
                         <span class="dimension-badge-text" id="dimText">Persuasion Power</span>
                     </div>
-                    <div class="question-count"><span id="qNum">1</span> / 16</div>
+                    <div class="question-count"><span id="qNum">1</span> / 28</div>
                 </div>
                 <div class="progress-ring-wrap">
                     <div class="progress-ring">
@@ -569,12 +635,13 @@
                     <div class="pricing-cards">
                         <div class="plan-card glass-card">
                             <div class="plan-name">Starter</div>
-                            <div class="plan-tagline">Build your influence foundation</div>
+                            <div class="plan-tagline">Build the habit</div>
                             <div class="plan-price"><span class="plan-amount">$12.99</span><span class="plan-period">/ month</span></div>
                             <ul class="plan-features">
-                                <li>Unlimited AI practice sessions</li>
-                                <li>All 5 dimension training</li>
-                                <li>Weekly IQ tracking</li>
+                                <li>Essential Analytics</li>
+                                <li>15-min AI voice + unlimited text roleplay</li>
+                                <li>Basic feedback on clarity & structure</li>
+                                <li>3 avatars + daily goals</li>
                             </ul>
                             <button class="plan-btn plan-btn-secondary" onclick="selectPlan('Starter')">
                                 Start Free Trial
@@ -587,13 +654,14 @@
                                 Most Popular
                             </div>
                             <div class="plan-name">Pro</div>
-                            <div class="plan-tagline">Accelerate to elite influence</div>
-                            <div class="plan-price"><span class="plan-amount">$24.99</span><span class="plan-period">/ month</span></div>
+                            <div class="plan-tagline">Your full communication gym</div>
+                            <div class="plan-price"><span class="plan-amount">$17.99</span><span class="plan-period">/ month</span></div>
                             <ul class="plan-features">
                                 <li>Everything in Starter</li>
-                                <li>Advanced scenario library</li>
-                                <li>Personalized training plans</li>
-                                <li>IQ benchmarking over time</li>
+                                <li>30-min AI voice & all scenarios</li>
+                                <li>Live mid-conversation coaching + deep analytics</li>
+                                <li>10 premium avatars + multilingual</li>
+                                <li>Full history & reports</li>
                             </ul>
                             <button class="plan-btn plan-btn-primary" onclick="selectPlan('Pro')">
                                 Start Free Trial
@@ -622,7 +690,7 @@
         <div class="store-modal-title">Download Conversly</div>
         <div class="store-modal-plan" id="storeModalPlan">Pro Plan Selected</div>
         <div class="store-btns">
-            <a href="https://apps.apple.com/app/conversly" target="_blank" class="store-btn">
+            <a href="https://apps.apple.com/us/app/conversly-communication-gym/id6753739129" target="_blank" class="store-btn">
                 <div class="store-btn-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                 </div>
@@ -632,7 +700,7 @@
                 </div>
                 <svg class="store-btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.conversly" target="_blank" class="store-btn">
+            <a href="https://play.google.com/store/apps/details?id=com.conversly.app" target="_blank" class="store-btn">
                 <div class="store-btn-icon">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83.67-1.5 1.5-1.5.4 0 .77.15 1.06.44L17.1 11.5c.59.54.59 1.46 0 2L5.56 22.56c-.29.29-.66.44-1.06.44-.83 0-1.5-.67-1.5-1.5zm14.1-8.5L5 2.5v19l12.1-9.5zM20 12l-3-2.5v5l3-2.5z"/></svg>
                 </div>
@@ -655,106 +723,182 @@ const dimensions = [
 ];
 
 const scenarios = [
-    // PERSUASION POWER (3-4)
+    // PERSUASION POWER (6 questions - mix of professional/self-improvement)
     { dim: 'dim1', name: 'Persuasion Power', num: 1, text: "You need budget approval for a project you believe in. The decision-maker is skeptical. <b>How do you make your case?</b>", answers: [
-        { text: "\"Based on [their stated priority], this directly solves [specific problem] with a projected [quantified outcome]. Here's the data.\"", score: 100 },
-        { text: "Present all the benefits and let them weigh the options", score: 50 },
-        { text: "Ask what they would need to see to approve it", score: 70 },
-        { text: "Emphasize how hard you've worked on this", score: 20 }
+        { text: "Connect your ask to their stated priorities with quantified outcomes and supporting data.", score: 100 },
+        { text: "Present all the benefits comprehensively and let them weigh the options.", score: 55 },
+        { text: "Ask what specific evidence they would need to approve it.", score: 70 },
+        { text: "Emphasize the effort and research you've invested in this proposal.", score: 25 }
+    ]},
+    { dim: 'dim1', name: 'Persuasion Power', num: 1, text: "A friend keeps making excuses to avoid working out with you despite saying they want to get healthier. <b>How do you motivate them?</b>", answers: [
+        { text: "Share how starting small transformed your own routine, then suggest one easy step together.", score: 100 },
+        { text: "Send them motivational content and hope it inspires action.", score: 40 },
+        { text: "Remind them of the health benefits and why they said they wanted this.", score: 55 },
+        { text: "Give them space until they're ready on their own terms.", score: 30 }
     ]},
     { dim: 'dim1', name: 'Persuasion Power', num: 1, text: "A colleague disagrees with your recommendation in a meeting. <b>How do you respond?</b>", answers: [
-        { text: "\"I appreciate that perspective. Here's the evidence behind my recommendation: [data]. What would change your view?\"", score: 100 },
-        { text: "\"That's a fair point — let me think about it.\"", score: 55 },
-        { text: "Double down on your position more firmly", score: 25 },
-        { text: "Concede to avoid tension", score: 20 }
+        { text: "Acknowledge their point, present your evidence, then ask what would change their view.", score: 100 },
+        { text: "Thank them for the perspective and say you'll consider it.", score: 50 },
+        { text: "Restate your position more firmly with added emphasis.", score: 30 },
+        { text: "Concede to maintain harmony and revisit later.", score: 25 }
+    ]},
+    { dim: 'dim1', name: 'Persuasion Power', num: 1, text: "You want to convince your partner to try a new hobby you're passionate about. <b>What's your approach?</b>", answers: [
+        { text: "Frame it around what they already enjoy and show how this connects to their interests.", score: 100 },
+        { text: "Explain all the reasons why this hobby has been meaningful to you.", score: 45 },
+        { text: "Invite them once and let the experience speak for itself.", score: 60 },
+        { text: "Keep mentioning it until they agree to try.", score: 20 }
     ]},
     { dim: 'dim1', name: 'Persuasion Power', num: 1, text: "You're pitching an idea to a group with mixed interests. <b>What's your approach?</b>", answers: [
-        { text: "Identify the shared goal, frame the idea as serving that goal, and address each stakeholder's specific concern preemptively.", score: 100 },
-        { text: "Focus on the people most likely to say yes and build momentum", score: 60 },
-        { text: "Present the idea neutrally and let them decide", score: 40 },
-        { text: "Convince the most senior person first", score: 45 }
+        { text: "Identify the shared goal, frame your idea as serving that goal, and address each concern preemptively.", score: 100 },
+        { text: "Focus on the people most likely to say yes and build momentum from there.", score: 55 },
+        { text: "Present the idea neutrally and let the group decide.", score: 40 },
+        { text: "Convince the most senior person first and let them influence others.", score: 50 }
     ]},
-    // PRESENCE & AUTHORITY (3)
+    { dim: 'dim1', name: 'Persuasion Power', num: 1, text: "You're trying to get a refund for a defective product but the customer service rep says it's outside policy. <b>How do you proceed?</b>", answers: [
+        { text: "Calmly explain the specific issue, reference your customer loyalty, and ask what solutions are possible.", score: 100 },
+        { text: "Ask to speak with a supervisor immediately.", score: 50 },
+        { text: "Accept the policy but express disappointment.", score: 30 },
+        { text: "Threaten to leave a negative review if they don't help.", score: 20 }
+    ]},
+
+    // PRESENCE & AUTHORITY (6 questions)
     { dim: 'dim2', name: 'Presence & Authority', num: 2, text: "An executive interrupts your presentation: <b>\"What's the bottom line?\"</b>", answers: [
-        { text: "Pivot immediately: \"The bottom line is [one sentence]. Here's the decision I need from you.\"", score: 100 },
-        { text: "\"I'm getting there — just two more slides.\"", score: 40 },
-        { text: "Summarize quickly but lose your composure", score: 30 },
-        { text: "Continue as planned to cover everything", score: 15 }
+        { text: "Pivot immediately with a one-sentence summary and the specific decision you need.", score: 100 },
+        { text: "Acknowledge their time and promise to wrap up in two more slides.", score: 45 },
+        { text: "Summarize quickly while visibly adjusting your composure.", score: 35 },
+        { text: "Continue as planned to ensure they have complete context.", score: 20 }
+    ]},
+    { dim: 'dim2', name: 'Presence & Authority', num: 2, text: "At a social gathering, someone dismisses your career as unimportant. <b>How do you respond?</b>", answers: [
+        { text: "Share a brief, compelling example of impact from your work without being defensive.", score: 100 },
+        { text: "Politely correct them with facts about your field.", score: 55 },
+        { text: "Change the subject to avoid conflict.", score: 35 },
+        { text: "Match their energy and point out flaws in their own career.", score: 15 }
     ]},
     { dim: 'dim2', name: 'Presence & Authority', num: 2, text: "You're asked a question you don't know the answer to in front of senior leadership. <b>How do you handle it?</b>", answers: [
-        { text: "\"I don't have that specific data, but here's what I do know: [relevant context]. I'll follow up with specifics by EOD.\"", score: 100 },
-        { text: "\"I'm not sure — let me get back to you.\"", score: 55 },
-        { text: "Attempt an answer even though you're uncertain", score: 25 },
-        { text: "Deflect to someone else who might know", score: 30 }
+        { text: "State what you do know that's relevant, acknowledge the gap, and commit to follow up by a specific time.", score: 100 },
+        { text: "Admit you're not sure and promise to get back to them.", score: 55 },
+        { text: "Attempt a reasonable answer based on your best judgment.", score: 30 },
+        { text: "Redirect the question to someone else who might know.", score: 35 }
     ]},
     { dim: 'dim2', name: 'Presence & Authority', num: 2, text: "You're leading a meeting that's getting off track. <b>How do you regain control?</b>", answers: [
-        { text: "\"Let's refocus. We have 15 minutes and need to decide [specific outcome]. [Name], can you summarize where we are?\"", score: 100 },
-        { text: "Gently suggest returning to the agenda", score: 55 },
-        { text: "Let the tangent run its course to avoid seeming controlling", score: 25 },
-        { text: "Wait for a natural pause to redirect", score: 40 }
+        { text: "Name the time remaining, restate the specific outcome needed, and ask someone to summarize where you are.", score: 100 },
+        { text: "Gently suggest returning to the original agenda.", score: 50 },
+        { text: "Let the tangent run its course to avoid seeming controlling.", score: 25 },
+        { text: "Wait for a natural pause to redirect the conversation.", score: 40 }
     ]},
-    // EMOTIONAL RESONANCE (3)
+    { dim: 'dim2', name: 'Presence & Authority', num: 2, text: "You're giving a toast at a friend's wedding and you notice people starting to talk among themselves. <b>What do you do?</b>", answers: [
+        { text: "Pause briefly, make eye contact with key people, then continue with increased energy.", score: 100 },
+        { text: "Speak louder to recapture attention.", score: 45 },
+        { text: "Speed up to finish before losing more people.", score: 30 },
+        { text: "Wrap up quickly with a short ending.", score: 40 }
+    ]},
+    { dim: 'dim2', name: 'Presence & Authority', num: 2, text: "During a job interview, the interviewer seems distracted and keeps checking their phone. <b>How do you respond?</b>", answers: [
+        { text: "Pause naturally, then re-engage with a question or compelling point that requires their input.", score: 100 },
+        { text: "Continue professionally and hope they're still listening.", score: 40 },
+        { text: "Ask if this is still a good time for the interview.", score: 55 },
+        { text: "Shorten your answers to match their apparent interest level.", score: 35 }
+    ]},
+
+    // EMOTIONAL RESONANCE (5 questions)
     { dim: 'dim3', name: 'Emotional Resonance', num: 3, text: "A team member is visibly frustrated during a meeting. <b>How do you respond?</b>", answers: [
-        { text: "Acknowledge it directly: \"[Name], I sense some frustration. Can you help us understand what's behind that?\"", score: 100 },
-        { text: "Note it and follow up privately after the meeting", score: 65 },
-        { text: "Move on to avoid making it awkward", score: 25 },
-        { text: "Give them space and hope it resolves", score: 20 }
+        { text: "Acknowledge it directly by naming what you observe and inviting them to share.", score: 100 },
+        { text: "Note it and follow up privately after the meeting ends.", score: 60 },
+        { text: "Move on to avoid making the situation awkward.", score: 25 },
+        { text: "Give them space and hope it resolves naturally.", score: 20 }
+    ]},
+    { dim: 'dim3', name: 'Emotional Resonance', num: 3, text: "A close friend shares they didn't get a job they really wanted. <b>What's your response?</b>", answers: [
+        { text: "First validate how disappointing that feels, then ask what kind of support would help right now.", score: 100 },
+        { text: "Immediately suggest other opportunities they should pursue.", score: 35 },
+        { text: "Remind them of their strengths and that something better will come.", score: 50 },
+        { text: "Share a time when you experienced something similar.", score: 45 }
     ]},
     { dim: 'dim3', name: 'Emotional Resonance', num: 3, text: "You're delivering difficult news to a stakeholder who has invested emotionally in a different outcome. <b>Your approach?</b>", answers: [
-        { text: "Lead with acknowledgment: \"I know this isn't the outcome you were hoping for. Here's what happened, and here's how we move forward.\"", score: 100 },
-        { text: "Present the facts and let them process", score: 50 },
-        { text: "Soften the news to make it easier to hear", score: 35 },
-        { text: "Email it so they have time to process privately", score: 30 }
+        { text: "Lead with acknowledgment of their investment, then explain what happened and how to move forward.", score: 100 },
+        { text: "Present the facts clearly and let them process.", score: 45 },
+        { text: "Soften the news to make it easier to hear.", score: 35 },
+        { text: "Deliver it via email so they have time to process privately.", score: 30 }
     ]},
     { dim: 'dim3', name: 'Emotional Resonance', num: 3, text: "Someone publicly criticizes your work in a harsh tone. <b>How do you respond in the moment?</b>", answers: [
-        { text: "\"I appreciate the feedback. Let me address the specific concerns: [response]. I'd welcome a deeper discussion offline.\"", score: 100 },
-        { text: "Thank them and say you'll look into it", score: 50 },
-        { text: "Get defensive and explain why they're wrong", score: 15 },
-        { text: "Go quiet and address it later", score: 35 }
+        { text: "Thank them for the feedback, address the specific concerns, and offer to discuss further offline.", score: 100 },
+        { text: "Accept the feedback and say you'll look into it.", score: 50 },
+        { text: "Defend your work by explaining the reasoning behind it.", score: 25 },
+        { text: "Stay quiet and address it when emotions have cooled.", score: 40 }
     ]},
-    // STRATEGIC NAVIGATION (4)
+    { dim: 'dim3', name: 'Emotional Resonance', num: 3, text: "Your romantic partner seems withdrawn but says \"I'm fine\" when you ask. <b>How do you handle it?</b>", answers: [
+        { text: "Express that you sense something's off, that you're here when ready, and give them space without pressure.", score: 100 },
+        { text: "Take them at their word and don't push further.", score: 40 },
+        { text: "Keep asking until they open up.", score: 20 },
+        { text: "Try to cheer them up with activities or humor.", score: 35 }
+    ]},
+
+    // STRATEGIC NAVIGATION (6 questions)
     { dim: 'dim4', name: 'Strategic Navigation', num: 4, text: "Two stakeholders with conflicting priorities both need something from your project. <b>How do you navigate?</b>", answers: [
-        { text: "Meet each privately, understand core concerns, then propose a solution framed around their shared goal — positioning yourself as the bridge.", score: 100 },
-        { text: "Present both options and let them decide", score: 40 },
-        { text: "Side with the more powerful stakeholder", score: 30 },
-        { text: "Escalate to leadership to resolve", score: 35 }
+        { text: "Meet each privately to understand core concerns, then propose a solution framed around their shared goal.", score: 100 },
+        { text: "Present both options transparently and let them decide.", score: 45 },
+        { text: "Align with the stakeholder who has more power.", score: 30 },
+        { text: "Escalate to leadership to resolve the conflict.", score: 40 }
+    ]},
+    { dim: 'dim4', name: 'Strategic Navigation', num: 4, text: "You realize a goal you've been pursuing no longer aligns with what you actually want. <b>What do you do?</b>", answers: [
+        { text: "Reflect on what changed, extract the lessons learned, and redirect toward what matters now.", score: 100 },
+        { text: "Push through to completion since you've already invested so much.", score: 30 },
+        { text: "Abandon it immediately and start fresh.", score: 40 },
+        { text: "Put it on hold indefinitely while you figure things out.", score: 35 }
     ]},
     { dim: 'dim4', name: 'Strategic Navigation', num: 4, text: "You want to advocate for a promotion, but your manager hasn't raised it. <b>What's your move?</b>", answers: [
-        { text: "Request a meeting: \"I'd like to discuss my trajectory. I've documented my impact and would like to explore next steps.\"", score: 100 },
-        { text: "Mention your interest casually", score: 45 },
-        { text: "Wait for the next review cycle", score: 25 },
-        { text: "Assume they'll bring it up if you deserve it", score: 10 }
+        { text: "Request a dedicated meeting to discuss your trajectory with documented evidence of your impact.", score: 100 },
+        { text: "Mention your interest casually in your next one-on-one.", score: 45 },
+        { text: "Wait for the next formal review cycle.", score: 30 },
+        { text: "Assume they'll bring it up when you've earned it.", score: 15 }
     ]},
     { dim: 'dim4', name: 'Strategic Navigation', num: 4, text: "Someone else gets credit for an idea you originated. <b>How do you reclaim ownership?</b>", answers: [
-        { text: "\"Great to see this gaining traction. When I first proposed it, I also suggested [additional context] that could help here.\"", score: 100 },
-        { text: "Mention it to your manager privately", score: 55 },
-        { text: "Let it go — you'll get credit for execution", score: 30 },
-        { text: "Call them out directly", score: 15 }
+        { text: "Acknowledge the traction it's gaining and add context from when you first proposed it, including additional insights.", score: 100 },
+        { text: "Mention it to your manager privately.", score: 55 },
+        { text: "Let it go and trust your execution will be recognized.", score: 35 },
+        { text: "Confront the person directly about taking your idea.", score: 20 }
     ]},
     { dim: 'dim4', name: 'Strategic Navigation', num: 4, text: "You're in a political situation where the \"right\" answer depends on who's listening. <b>How do you navigate?</b>", answers: [
-        { text: "Find the principle both sides agree on, frame your position in terms of that principle, and avoid taking explicit sides.", score: 100 },
-        { text: "Stay neutral and non-committal", score: 45 },
-        { text: "Align with the more powerful group", score: 30 },
-        { text: "Be transparent about your actual view", score: 50 }
+        { text: "Find the principle both sides agree on and frame your position in those terms without taking explicit sides.", score: 100 },
+        { text: "Stay neutral and non-committal until clarity emerges.", score: 45 },
+        { text: "Align with the group that has more influence.", score: 30 },
+        { text: "Be transparent about your actual view regardless of politics.", score: 50 }
     ]},
-    // ADAPTIVE CLARITY (3)
+    { dim: 'dim4', name: 'Strategic Navigation', num: 4, text: "A networking connection offers an opportunity that's good but not great. Saying yes might close doors to something better. <b>What do you do?</b>", answers: [
+        { text: "Express genuine interest, ask clarifying questions about timeline, and buy time to assess alternatives.", score: 100 },
+        { text: "Accept it since opportunities shouldn't be wasted.", score: 40 },
+        { text: "Decline politely to stay open for something better.", score: 45 },
+        { text: "Ignore it and see if something better comes along.", score: 20 }
+    ]},
+
+    // ADAPTIVE CLARITY (5 questions)
     { dim: 'dim5', name: 'Adaptive Clarity', num: 5, text: "You're explaining a complex technical concept to a non-technical executive. <b>Your approach?</b>", answers: [
         { text: "Lead with the business impact, use a simple analogy, then offer to go deeper only if they want details.", score: 100 },
-        { text: "Simplify heavily and skip technical details entirely", score: 55 },
-        { text: "Give a comprehensive explanation so they understand fully", score: 25 },
-        { text: "Send a document they can review at their pace", score: 40 }
+        { text: "Simplify heavily and skip technical details entirely.", score: 50 },
+        { text: "Give a comprehensive explanation so they understand fully.", score: 30 },
+        { text: "Send a document they can review at their own pace.", score: 40 }
     ]},
     { dim: 'dim5', name: 'Adaptive Clarity', num: 5, text: "Midway through your explanation, you realize your audience is confused. <b>How do you recover?</b>", answers: [
-        { text: "Pause, acknowledge it: \"Let me approach this differently.\" Then reframe using a concrete example relevant to them.", score: 100 },
-        { text: "Ask what specifically is unclear", score: 65 },
-        { text: "Speed up to get to the clearer parts", score: 20 },
-        { text: "Continue and address questions at the end", score: 25 }
+        { text: "Pause, acknowledge it directly, and reframe using a concrete example relevant to them.", score: 100 },
+        { text: "Ask what specifically is unclear to them.", score: 60 },
+        { text: "Speed up to get to the clearer parts.", score: 20 },
+        { text: "Continue and address questions at the end.", score: 30 }
+    ]},
+    { dim: 'dim5', name: 'Adaptive Clarity', num: 5, text: "You're teaching someone a skill they're struggling with. <b>How do you adapt?</b>", answers: [
+        { text: "Break it into smaller steps, demonstrate one piece, have them try it, then build from there.", score: 100 },
+        { text: "Explain it again more slowly with different words.", score: 50 },
+        { text: "Show them a video or resource that might explain it better.", score: 45 },
+        { text: "Tell them it takes time and they'll get it with practice.", score: 30 }
     ]},
     { dim: 'dim5', name: 'Adaptive Clarity', num: 5, text: "You're in a meeting where the discussion keeps circling without resolution. <b>What do you do?</b>", answers: [
-        { text: "\"We seem to be circling. Can we name the specific decision we need to make and the options on the table?\"", score: 100 },
-        { text: "Summarize what you've heard and ask for next steps", score: 70 },
-        { text: "Let it play out — eventually someone will land it", score: 25 },
-        { text: "Follow up via email with a clear proposal", score: 50 }
+        { text: "Name the pattern, clarify the specific decision needed, and list the options on the table.", score: 100 },
+        { text: "Summarize what you've heard and ask for next steps.", score: 65 },
+        { text: "Let it play out until someone eventually lands it.", score: 25 },
+        { text: "Follow up via email with a clear proposal afterward.", score: 50 }
+    ]},
+    { dim: 'dim5', name: 'Adaptive Clarity', num: 5, text: "You need to give someone difficult feedback about their communication style. <b>How do you frame it?</b>", answers: [
+        { text: "Describe the specific behavior, its impact, and offer a concrete alternative approach.", score: 100 },
+        { text: "Focus on the positives first, then mention the area for improvement.", score: 55 },
+        { text: "Be direct and tell them exactly what's wrong.", score: 40 },
+        { text: "Ask questions that help them realize the issue themselves.", score: 60 }
     ]}
 ];
 
@@ -774,6 +918,16 @@ const interstitials = [
         { label: 'Technical skill', val: 65, color: 'sky' },
         { label: 'Experience', val: 58, color: 'amber' },
         { label: 'Credentials', val: 42, color: 'rose' }
+    ]},
+    { badge: 'Relationship Science', stat: '65%', head: 'of relationship satisfaction is predicted by communication quality.', body: 'How you express needs, navigate conflict, and show up emotionally shapes your closest bonds.', chartTitle: 'Relationship Success Factors', bars: [
+        { label: 'Communication', val: 65, color: 'emerald' },
+        { label: 'Shared values', val: 55, color: 'sky' },
+        { label: 'Quality time', val: 48, color: 'amber' }
+    ]},
+    { badge: 'Self-Improvement Data', stat: '4.7x', head: 'People who practice communication deliberately improve 4.7x faster than passive learners.', body: 'Like any skill, influence compounds with intentional repetition and feedback.', chartTitle: 'Improvement Rate by Method', bars: [
+        { label: 'Active practice', val: 94, color: 'emerald' },
+        { label: 'Courses only', val: 45, color: 'amber' },
+        { label: 'Reading only', val: 20, color: 'rose' }
     ]}
 ];
 
@@ -781,15 +935,24 @@ const tiers = [
     { min: 85, name: 'Elite Influencer', desc: 'Top 5%. You move people effortlessly, navigate complexity with precision, and shape outcomes through exceptional communication.' },
     { min: 70, name: 'High Influence', desc: 'Top 20%. Strong across most dimensions with room for targeted growth.' },
     { min: 50, name: 'Developing', desc: 'Average range. Solid foundation with significant gains available.' },
-    { min: 0, name: 'Emerging', desc: 'Below average. Influence gaps are likely limiting your career trajectory.' }
+    { min: 0, name: 'Emerging', desc: 'Below average. Influence gaps are likely limiting your potential.' }
 ];
 
+const achievementIcons = {
+    target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+    crown: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20l2-14 4 6 2-8 2 8 4-6 2 14"/></svg>',
+    diamond: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M2 9h20M12 22L6 9M12 22l6-13"/></svg>',
+    chess: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 16l-1.447.724a1 1 0 0 0-.553.894V20h12v-2.382a1 1 0 0 0-.553-.894L16 16"/><path d="M8.5 16a6.5 6.5 0 1 1 7 0"/><path d="M12 2v4m-2 0h4"/></svg>',
+    trophy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 1 0 12 0V2Z"/></svg>',
+    bolt: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>'
+};
+
 const achievements = [
-    { q: 3, icon: '🎯', text: 'Dimension Mastered!', sub: 'Persuasion Power complete', pts: '+15 bonus IQ' },
-    { q: 6, icon: '👑', text: 'Dimension Mastered!', sub: 'Presence & Authority complete', pts: '+15 bonus IQ' },
-    { q: 9, icon: '💎', text: 'Dimension Mastered!', sub: 'Emotional Resonance complete', pts: '+15 bonus IQ' },
-    { q: 13, icon: '♟️', text: 'Dimension Mastered!', sub: 'Strategic Navigation complete', pts: '+15 bonus IQ' },
-    { q: 16, icon: '🏆', text: 'Assessment Complete!', sub: 'All 5 dimensions assessed', pts: '+25 bonus IQ' }
+    { q: 6, icon: 'target', text: 'Dimension Mastered!', sub: 'Persuasion Power complete', pts: '+15 bonus IQ' },
+    { q: 12, icon: 'crown', text: 'Dimension Mastered!', sub: 'Presence & Authority complete', pts: '+15 bonus IQ' },
+    { q: 17, icon: 'diamond', text: 'Dimension Mastered!', sub: 'Emotional Resonance complete', pts: '+15 bonus IQ' },
+    { q: 23, icon: 'chess', text: 'Dimension Mastered!', sub: 'Strategic Navigation complete', pts: '+15 bonus IQ' },
+    { q: 28, icon: 'trophy', text: 'Assessment Complete!', sub: 'All 5 dimensions assessed', pts: '+25 bonus IQ' }
 ];
 
 let q = 0, totalScore = 0, streak = 0, locked = false, interIdx = 0;
@@ -802,8 +965,8 @@ function showScreen(id) {
     $(id).classList.add('active');
 }
 
-function showAchievement(icon, text, sub, pts) {
-    $('achievementIcon').textContent = icon;
+function showAchievement(iconKey, text, sub, pts) {
+    $('achievementIcon').innerHTML = achievementIcons[iconKey] || achievementIcons.target;
     $('achievementText').textContent = text;
     $('achievementSub').textContent = sub;
     $('achievementPoints').textContent = pts;
@@ -829,19 +992,20 @@ function loadQ() {
         return;
     }
     
-    // Check for interstitial (after questions 5, 10)
-    if (q === 5 || q === 10) {
-        if (interIdx < interstitials.length) {
-            showInter();
-            return;
-        }
+    // Check for interstitial every 5th question (after 5, 10, 15, 20, 25)
+    // Only show if this is the correct interstitial for this breakpoint
+    const interBreakpoints = [5, 10, 15, 20, 25];
+    const breakpointIndex = interBreakpoints.indexOf(q);
+    if (breakpointIndex !== -1 && breakpointIndex === interIdx) {
+        showInter();
+        return;
     }
     
     // Check for achievement
     const ach = achievements.find(a => a.q === q);
     if (ach && q > 0) {
         showAchievement(ach.icon, ach.text, ach.sub, ach.pts);
-        totalScore += 15; // Bonus points
+        totalScore += 15;
     }
     
     locked = false;
@@ -852,20 +1016,20 @@ function loadQ() {
     $('dimNum').textContent = s.num;
     $('qNum').textContent = q + 1;
     
-    const percent = Math.round(((q + 1) / 16) * 100);
+    const percent = Math.round(((q + 1) / 28) * 100);
     $('progPercent').textContent = percent + '%';
     const circumference = 2 * Math.PI * 22;
     const offset = circumference - (percent / 100) * circumference;
     $('progRingFill').style.strokeDashoffset = offset;
     $('progFill').style.width = percent + '%';
     
-    $('scenarioContext').textContent = `${s.name} • Question ${q + 1}`;
+    $('scenarioContext').textContent = `${s.name}`;
     $('scenarioText').innerHTML = s.text;
     
     const currentIQ = q > 0 ? Math.round(totalScore / q) : 0;
     $('liveIQ').textContent = currentIQ;
     $('topIQ').textContent = currentIQ;
-    $('liveStreak').textContent = streak + '🔥';
+    $('liveStreak').innerHTML = streak + ' <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/></svg>';
     
     const wrap = $('answersWrap');
     wrap.innerHTML = '';
@@ -887,6 +1051,28 @@ function loadQ() {
         wrap.appendChild(btn);
     });
     
+    // Add custom answer input
+    const customDiv = document.createElement('div');
+    customDiv.className = 'custom-answer';
+    customDiv.innerHTML = `
+        <span class="custom-answer-label">Or write your own response</span>
+        <textarea class="custom-answer-input" id="customInput" rows="2" placeholder="Type your approach here..."></textarea>
+        <button class="custom-answer-submit" id="customSubmit" disabled>Submit My Answer</button>
+    `;
+    wrap.appendChild(customDiv);
+    
+    // Enable submit when there's text
+    const customInput = $('customInput');
+    const customSubmit = $('customSubmit');
+    customInput.addEventListener('input', () => {
+        customSubmit.disabled = customInput.value.trim().length < 10;
+    });
+    customSubmit.addEventListener('click', () => {
+        if (!locked && customInput.value.trim().length >= 10) {
+            pickCustom(s.dim);
+        }
+    });
+    
     wrap.onclick = e => {
         const btn = e.target.closest('.answer');
         if (btn && !btn.classList.contains('locked') && btn._data) pick(btn, btn._data);
@@ -899,6 +1085,7 @@ function pick(btn, ans) {
     
     btn.classList.add('selected');
     document.querySelectorAll('.answer').forEach(a => a.classList.add('locked', 'reveal'));
+    document.querySelector('.custom-answer').style.opacity = '0.4';
     
     totalScore += ans.score;
     if (ans.score >= 70) streak++; else streak = 0;
@@ -906,9 +1093,35 @@ function pick(btn, ans) {
     const currentIQ = Math.round(totalScore / (q + 1));
     $('liveIQ').textContent = currentIQ;
     $('topIQ').textContent = currentIQ;
-    $('liveStreak').textContent = streak + '🔥';
+    $('liveStreak').innerHTML = streak + ' <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/></svg>';
     
     dimScores[ans.dim].push(ans.score);
+    
+    setTimeout(() => {
+        q++;
+        loadQ();
+    }, 1150);
+}
+
+function pickCustom(dim) {
+    if (locked) return;
+    locked = true;
+    
+    document.querySelectorAll('.answer').forEach(a => a.classList.add('locked'));
+    document.querySelector('.custom-answer').style.background = 'linear-gradient(140deg,rgba(52,211,153,0.15),rgba(52,211,153,0.05))';
+    document.querySelector('.custom-answer').style.borderColor = 'var(--emerald-400)';
+    
+    // Custom answers get a moderate score (60-75 range)
+    const customScore = 65;
+    totalScore += customScore;
+    streak = 0;
+    
+    const currentIQ = Math.round(totalScore / (q + 1));
+    $('liveIQ').textContent = currentIQ;
+    $('topIQ').textContent = currentIQ;
+    $('liveStreak').innerHTML = streak + ' <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/></svg>';
+    
+    dimScores[dim].push(customScore);
     
     setTimeout(() => {
         q++;
@@ -959,16 +1172,16 @@ function showResults() {
     
     // Add final achievement bonus
     totalScore += 25;
-    showAchievement('🏆', 'Assessment Complete!', 'All 5 dimensions assessed', '+25 bonus IQ');
+    showAchievement('trophy', 'Assessment Complete!', 'All 5 dimensions assessed', '+25 bonus IQ');
     
     // Calculate final IQ (0-100+ scale)
-    const maxPossible = (scenarios.length * 100) + 85; // includes bonuses
-    const iq = Math.min(150, Math.round((totalScore / maxPossible) * 130)); // Scale to ~130 max for "genius" feel
+    const maxPossible = (scenarios.length * 100) + 100; // includes bonuses
+    const iq = Math.min(150, Math.round((totalScore / maxPossible) * 130));
     
     // Animate score
     setTimeout(() => {
         animNum($('iqScore'), 0, iq, 2500);
-        const circumference = 2 * Math.PI * 100;
+        const circumference = 2 * Math.PI * 90;
         const offset = circumference - (Math.min(iq, 100) / 100) * circumference;
         $('iqRingFill').style.strokeDashoffset = offset;
     }, 500);
@@ -1036,12 +1249,64 @@ function animNum(el, start, end, dur) {
 
 function shareResults() {
     const r = window.gameResults;
-    const text = `My Influence Quotient: ${r.iq} IQ (${r.tier})\n\nTop ${100 - r.percentile}% of 75,000+ professionals.\n\nMeasure yours: ${location.href}`;
+    if (!r) return;
+    
+    const text = `My Influence Quotient: ${r.iq} IQ (${r.tier})\n\nTop ${100 - r.percentile}% of 75,000+ professionals.\n\nMeasure yours:`;
+    const url = window.location.href;
+    
     if (navigator.share) {
-        navigator.share({ title: 'My Influence Quotient', text, url: location.href }).catch(() => {});
+        navigator.share({ 
+            title: 'My Influence Quotient', 
+            text: text,
+            url: url 
+        }).catch(err => {
+            // If share fails, fall back to clipboard
+            copyToClipboard(text + ' ' + url);
+        });
     } else {
-        navigator.clipboard.writeText(text).then(() => alert('Copied!')).catch(() => alert(text));
+        copyToClipboard(text + ' ' + url);
     }
+}
+
+function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+            showCopyFeedback();
+        }).catch(() => {
+            fallbackCopy(text);
+        });
+    } else {
+        fallbackCopy(text);
+    }
+}
+
+function fallbackCopy(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+        document.execCommand('copy');
+        showCopyFeedback();
+    } catch (e) {
+        alert('Copy this:\n\n' + text);
+    }
+    document.body.removeChild(textarea);
+}
+
+function showCopyFeedback() {
+    const btn = document.querySelector('.share-btn-link');
+    const originalHTML = btn.innerHTML;
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Copied to clipboard!';
+    btn.style.borderColor = 'var(--emerald-400)';
+    btn.style.color = 'var(--emerald-400)';
+    setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.style.borderColor = '';
+        btn.style.color = '';
+    }, 2000);
 }
 
 function selectPlan(planName) {
